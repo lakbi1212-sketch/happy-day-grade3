@@ -66,7 +66,7 @@ function good(){beep(660,.12);setTimeout(function(){beep(880,.18)},110)}
 function bad(){beep(200,.25,'triangle')}
 var SPK='<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-4px"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';var AUD=window.AUD=window.AUD||{};var cur;
 function has(id){return !!(id&&AUD[id])}
-function play(id){if(!S.sound||!has(id))return;try{if(cur){cur.pause()}cur=new Audio(AUD[id]);cur.play()}catch(e){}}
+function play(id){if(!S.sound||!has(id))return;try{if(cur){cur.pause()}cur=new Audio(AUD[id]);window.__cur=cur;cur.play()}catch(e){}}
 var snd=document.getElementById('snd');function sndUi(){snd.innerHTML=S.sound?SPK:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-4px"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>'}
 snd.onclick=function(){S.sound=!S.sound;save();sndUi()};sndUi();
 function stars(n){return '★'.repeat(n)+'☆'.repeat(3-n)}
