@@ -38,3 +38,24 @@ window.SEC=[
  {"en":"soup","ar":"شوربة","aud":"w_soup","img":"soup"},
  {"en":"Khubz Rakhal","ar":"خبز رقال عُماني","aud":"w_khubz","img":"khubz"}]}
 ];
+
+window.STXT={
+"s_getup":"I get up in the morning.",
+"s_pray":"I pray in the morning.",
+"s_breakfast":"We have breakfast in the morning.",
+"s_school":"We go to school in the morning.",
+"s_art":"We have art lessons today.",
+"s_play":"I play in the afternoon.",
+"s_lunch":"We have lunch in the afternoon.",
+"s_homework":"We do homework in the evening.",
+"s_dinner":"We have dinner in the evening.",
+"s_bed":"We go to bed at night.",
+"s_when_breakfast":"When do you have breakfast? We have breakfast in the morning.",
+"s_when_lunch":"When do you have lunch? We have lunch in the afternoon.",
+"s_when_dinner":"When do you have dinner? We have dinner in the evening.",
+"s_when_bed":"When do you go to bed? We go to bed at night.",
+"s_time1":"It's four o'clock.",
+"s_time2":"It's half past six.",
+"s_time3":"It's quarter past six.",
+"s_time4":"It's quarter to seven."
+};
