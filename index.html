@@ -164,7 +164,7 @@ var items=pick.map(function(w){var others=shuffle(pool.filter(function(x){return
 return{html:'<p style="font-size:20px"><b>Listen, then choose the word you hear.</b></p>',opts:[w.en].concat(others),a:0,hint:'Listen one more time, then choose.',pre:w.aud,aud:w.sent}});
 quiz('listen','Listen and choose','استمع جيدًا، ثم اختر الكلمة التي سمعتها.',items,true)}
 // ---- picture quiz
-function pics(){var pool=[];SECS.forEach(function(s){s.words.forEach(function(w){if(w.img&&IMG[w.img])pool.push(w)})});var pick=shuffle(pool).slice(0,10);
+function pics(){var pool=[];var NOQ={tea:1,toast:1,cereal:1,soup:1,pickles:1};SECS.forEach(function(s){s.words.forEach(function(w){if(w.img&&IMG[w.img]&&!NOQ[w.img])pool.push(w)})});var pick=shuffle(pool).slice(0,10);
 var items=pick.map(function(w){var others=shuffle(pool.filter(function(x){return x.en!==w.en})).slice(0,3).map(function(x){return x.en});return{html:'<div class="center">'+pic(w)+'</div><p><b>What is this?</b></p>',opts:[w.en].concat(others),a:0,hint:'Look at the picture again.',aud:w.aud}});
 quiz('pics','Picture quiz','انظر إلى الصورة واختر الكلمة.',items)}
 // ---- what is the time
