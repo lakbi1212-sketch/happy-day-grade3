@@ -29,14 +29,13 @@ window.SEC=[
  {"en":"dolphin","ar":"دولفين","aud":"w_dolphin","img":"dolphin"},
  {"en":"elephant","ar":"فيل","aud":"w_elephant","img":"elephant"},
  {"en":"alphabet","ar":"الحروف الأبجدية","aud":"w_alphabet","img":"alphabet"}]},
-{"id":"breakfast","en":"Breakfasts around the world","ar":"وجبات الإفطار حول العالم","color":"#f6a000","extra":{"text":"This is Khubz Rakhal. It is a popular breakfast dish in Oman. We have it with eggs and beans.","ar":"هذا خبز رقال. إنه طبق فطور مشهور في عُمان. نتناوله مع البيض والفاصولياء.","aud":"s_khubz"},"words":[
+{"id":"breakfast","en":"Breakfasts around the world","ar":"وجبات الإفطار حول العالم","color":"#f6a000","words":[
  {"en":"toast","ar":"خبز محمّص","aud":"w_toast","img":"toast"},
  {"en":"tea","ar":"شاي","aud":"w_tea","img":"tea"},
  {"en":"cereal","ar":"رقائق الفطور","aud":"w_cereal","img":"cereal"},
  {"en":"porridge","ar":"عصيدة الذرة","aud":"w_porridge","img":"porridge"},
  {"en":"pickles","ar":"مخلّل","aud":"w_pickles","img":"pickles"},
- {"en":"soup","ar":"شوربة","aud":"w_soup","img":"soup"},
- {"en":"Khubz Rakhal","ar":"خبز رقال عُماني","aud":"w_khubz","img":"khubz"}]}
+ {"en":"soup","ar":"شوربة","aud":"w_soup","img":"soup"}]}
 ];
 
 window.STXT={
