@@ -55,7 +55,7 @@ h2{margin:6px 0 2px;font-size:24px}
 <body>
 <header><h1><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-5px"><circle cx="12" cy="12" r="6" fill="#f6b81a"/><g stroke="#f6b81a" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M3.5 3.5l2 2M18.5 18.5l2 2M20.5 3.5l-2 2M5.5 18.5l-2 2"/></g></svg> Happy Day</h1><button id="snd" aria-label="Sound on or off"></button></header>
 <main id="app"></main>
-<script src="imgs.js"></script><script src="units.js"></script><script src="audio1.js"></script><script src="audio2.js"></script><script src="audio3.js"></script><script src="audio4.js"></script><script src="grammar.js"></script>
+<script src="imgs.js"></script><script src="units.js"></script><script src="audio1.js"></script><script src="audio2.js"></script><script src="audio3.js"></script><script src="audio4.js"></script><script src="audio5.js"></script><script src="grammar.js"></script>
 <script>
 (function(){
 'use strict';
@@ -94,14 +94,20 @@ function backBtn(t){var b=el('<button class="back">← '+(t===home?'Home':'Words
 function studio(){var d=el('<div></div>');d.appendChild(backBtn(home));d.appendChild(el('<h2 style="margin-bottom:2px">Words</h2>'));d.appendChild(el('<div class="ar" lang="ar" dir="rtl" style="font-size:22px">كلمات الوحدة الأولى: تعلّم، استمع، ثم العب.</div>'));
 var g=el('<div class="grid"></div>');
 SECS.forEach(function(s,i){var b=el('<button class="stn sec" style="border-color:'+s.color+'"><span class="secn" style="background:'+s.color+'">'+(i+1)+'</span><b>'+esc(s.en)+'</b><small lang="ar" dir="rtl">'+s.ar+'</small><small>'+s.words.length+' words'+(S.sec[s.id]?' &#10003; done':'')+'</small></button>');b.onclick=function(){secView(s)};g.appendChild(b)});
-d.appendChild(g);show(d)}
+d.appendChild(g);var xb=el('<button class="btn" style="margin:14px 0;width:100%">More words · كلمات إضافية</button>');xb.onclick=extraWords;d.appendChild(xb);show(d)}
+var XW=[["tennis", "التنس"], ["paint / paints", "يرسم / ألوان الرسم"], ["flowers", "الزهور"], ["table", "الطاولة"], ["blue", "أزرق"], ["yellow", "أصفر"], ["green", "أخضر"], ["eggs", "البيض"], ["beans", "الفول"], ["milk", "الحليب"], ["corn", "الذرة"], ["fish", "السمك"], ["basketball", "كرة السلة"], ["toys", "الألعاب"], ["shop", "المتجر"], ["home", "المنزل"], ["park", "الحديقة"], ["Monday", "يوم الاثنين"], ["Saturday", "يوم السبت"], ["go home", "يعود إلى المنزل"], ["start school", "يبدأ الدراسة"], ["Good night!", "تصبح على خير!"], ["Hurry up!", "أسرع!"], ["It's time for English.", "حان وقت الإنجليزي."], ["It's time for school.", "حان وقت المدرسة."], ["UK", "المملكة المتحدة"], ["Japan", "اليابان"], ["South Africa", "جنوب أفريقيا"]];
+function extraWords(){var d=el('<div></div>');var bk=el('<button class="back">← Words</button>');bk.onclick=studio;d.appendChild(bk);d.appendChild(el('<h2 style="margin-bottom:2px">More words</h2>'));d.appendChild(el('<div class="ar" lang="ar" dir="rtl" style="font-size:20px">كلمات إضافية من قصص وقراءات الوحدة الأولى</div>'));d.appendChild(el('<p class="sm">Extra words from the Unit 1 stories and reading pages. Read them with the Class Book and Activity Book. Tap the speaker to listen. This list has no points.</p>'));var t=el('<div class="card" style="padding:6px 14px"></div>');XW.forEach(function(w,i){var id='xw'+(i<9?'0':'')+(i+1);var r=el('<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #e3eef2"><span class="xl" style="display:flex;align-items:center;gap:8px;font-size:19px;font-weight:700;color:#14424f"><span>'+esc(w[0])+'</span></span><span lang="ar" dir="rtl" style="font-size:17px;color:#3d5a66;text-align:right">'+w[1]+'</span></div>');if(has(id))r.querySelector('.xl').appendChild(spk(id,''));t.appendChild(r)});d.appendChild(t);show(d)}
+var SPKR={s_getup:'مازن',s_pray:'مالك',s_play:'مازن',s_time1:'مالك',s_time2:'مازن',s_time3:'مالك',s_time4:'مازن'};
+function stxtHtml(id){var t=window.STXT[id];function L(n){return '<span class="spn" lang="ar" dir="rtl" style="display:inline-block;background:#14424f;color:#fff;border-radius:10px;padding:1px 9px;font-size:14px;font-weight:700;margin-inline-end:6px">'+n+'</span>'}
+if(/^s_when_/.test(id)){var p=t.split('? ');return L('مازن')+esc(p[0]+'?')+'<br>'+L('مالك')+esc(p[1])}
+return L(SPKR[id]||'مازن ومالك')+esc(t)}
 function secView(s){var d=el('<div></div>');var bk=el('<button class="back">← Words</button>');bk.onclick=studio;d.appendChild(bk);
 d.appendChild(el('<h2 style="color:'+s.color+'">'+esc(s.en)+'</h2>'));d.appendChild(el('<div class="ar" lang="ar" dir="rtl">'+s.ar+'</div>'));
 if(s.id==='clock')d.appendChild(el('<div class="sm">The clocks are drawings. The other pictures are from the Class Book and Activity Book (Ministry e-book).</div>'));
 s.words.forEach(function(w){var c=el('<div class="wcard" style="border-color:'+s.color+'"><div class="wtop">'+pic(w)+'<div class="wtxt"><div class="wen">'+esc(w.en)+'</div><div class="war" lang="ar" dir="rtl">'+w.ar+'</div></div></div></div>');
 var row=el('<div style="display:flex;gap:8px;flex-wrap:wrap"></div>');
 if(has(w.aud))row.appendChild(spk(w.aud));if(has(w.sent))row.appendChild(spk(w.sent,'Sentence'));
-if(row.children.length)c.appendChild(row);if(has(w.sent)&&window.STXT&&window.STXT[w.sent])c.appendChild(el('<div class="stxt">'+esc(window.STXT[w.sent])+'</div>'));d.appendChild(c)});
+if(row.children.length)c.appendChild(row);if(has(w.sent)&&window.STXT&&window.STXT[w.sent])c.appendChild(el('<div class="stxt">'+stxtHtml(w.sent)+'</div>'));d.appendChild(c)});
 if(s.extra){var x=el('<div class="card" style="border-color:'+s.color+';border-width:3px"><div class="gee" style="font-size:19px;font-weight:700;color:#2a1a52">'+esc(s.extra.text)+'</div><div class="gea" lang="ar" dir="rtl" style="font-size:16px;color:#3d5a66">'+s.extra.ar+'</div></div>');if(has(s.extra.aud))x.appendChild(spk(s.extra.aud));d.appendChild(x)}
 var pl=el('<button class="btn gold" style="margin:12px 0;width:100%">Play the match game</button>');pl.onclick=function(){matchGame(s)};d.appendChild(pl);show(d)}
 function matchGame(s){var ws=shuffle(s.words),sets=[];for(var i=0;i<ws.length;i+=6)sets.push(ws.slice(i,i+6));if(sets.length>1&&sets[sets.length-1].length<3){var l=sets.pop();sets[sets.length-1]=sets[sets.length-1].concat(l)}
