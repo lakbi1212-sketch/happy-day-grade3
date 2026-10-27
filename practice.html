@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ff9f1c"><title>ساحة الأنشطة · الصف الثالث</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#fff3c4 0,#ffe0f0 55%,#d9f2ff 100%);min-height:100vh;color:#2b2140;padding:14px 12px 40px}
+.wrap{max-width:680px;margin:0 auto}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.nav a,.btn{font:inherit;font-weight:800;font-size:16px;text-decoration:none;color:#fff;background:#6c3fc9;border:0;border-radius:14px;padding:11px 18px;cursor:pointer;box-shadow:0 3px 0 #4a2a94}
+.nav a.alt{background:#0e9f8a;box-shadow:0 3px 0 #0a6e5f}
+.hero{display:flex;align-items:center;gap:12px;background:#fff;border-radius:22px;padding:14px 16px;box-shadow:0 6px 18px rgba(108,63,201,.18);border:3px solid #ffd166}
+.sun{font-size:58px;line-height:1;animation:spin 14s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero h1{font-size:23px;line-height:1.5;color:#6c3fc9}.hero p{font-size:14px;color:#5b4f78;line-height:1.7}
+.score{display:flex;justify-content:space-between;gap:8px;margin:12px 0}
+.pill{flex:1;background:#fff;border-radius:16px;padding:8px 10px;text-align:center;font-weight:800;font-size:15px;border:2px solid #e3d9ff}
+.pill b{display:block;font-size:22px;color:#e8542f}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:430px){.menu{grid-template-columns:1fr}}
+.card{border:0;font:inherit;text-align:center;color:#fff;border-radius:20px;padding:16px 12px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.2);border:3px solid rgba(255,255,255,.4)}
+.card:active{transform:translateY(2px)}
+.card .ic{font-size:34px;display:block}.card .t{font-size:18px;font-weight:800;display:block;margin-top:4px}.card .e{font-size:12.5px;opacity:.95;display:block;direction:ltr;margin-top:2px}.card .d{font-size:12px;display:block;margin-top:6px;opacity:.95}
+.k1{background:linear-gradient(135deg,#e8542f,#f78c2b)}.k2{background:linear-gradient(135deg,#7c3aed,#a855f7)}.k3{background:linear-gradient(135deg,#0e9f8a,#2bc5a8)}.k4{background:linear-gradient(135deg,#d63384,#f06292)}.k5{background:linear-gradient(135deg,#1976d2,#42a5f5)}.k6{background:linear-gradient(135deg,#b8860b,#f7b500)}.k7{background:linear-gradient(135deg,#2e7d32,#66bb6a)}.k8{background:linear-gradient(135deg,#c2185b,#ff7043)}
+.panel{display:none;background:#fff;border-radius:22px;padding:16px;margin-top:12px;border:3px solid #c9b6ff;box-shadow:0 6px 18px rgba(108,63,201,.15)}
+.panel.on{display:block}
+.prog{height:12px;background:#eee;border-radius:99px;overflow:hidden;margin-bottom:12px}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffb703,#fb5607);transition:width .3s}
+.q{text-align:center;margin:8px 0 14px}.q .big{font-size:34px;font-weight:800;direction:ltr;color:#142d46;display:block;line-height:1.3}.q .ar{font-size:28px;font-weight:800;color:#142d46;display:block}.q .hint{font-size:14px;color:#6b5f86;margin-top:6px;display:block}
+.spkb{font-size:42px;width:84px;height:84px;border-radius:50%;border:4px solid #ffb703;background:#fff7d6;cursor:pointer}
+.opts{display:grid;gap:10px}.opts.two{grid-template-columns:1fr 1fr}
+.opt{font:inherit;font-weight:800;font-size:19px;padding:14px 10px;border-radius:16px;border:3px solid #d8ccff;background:#fff;cursor:pointer;color:#2b2140;min-height:56px}
+.opt.en{direction:ltr;font-family:Arial,sans-serif;font-size:20px}
+.opt.ok{background:#c8f7d4;border-color:#2e9e57}.opt.no{background:#ffd6d6;border-color:#d64545}
+.typ{width:100%;font:inherit;font-size:24px;font-weight:800;text-align:center;padding:12px;border-radius:14px;border:3px solid #d8ccff;direction:ltr;font-family:Arial,sans-serif}
+.fb{min-height:44px;margin-top:12px;text-align:center;font-weight:800;font-size:18px}.fb.ok{color:#1e8a46}.fb.no{color:#c43c3c}
+.row{display:flex;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.end{text-align:center}.end .stars{font-size:46px;letter-spacing:4px}.end h2{font-size:24px;color:#6c3fc9;margin:6px 0}
+.mem{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mc{font:inherit;font-weight:800;min-height:68px;border-radius:14px;border:3px solid #d8ccff;background:#f4efff;cursor:pointer;font-size:16px;padding:6px;color:#2b2140;line-height:1.3}
+.mc.en{direction:ltr;font-family:Arial,sans-serif}.mc.sel{background:#fff1b8;border-color:#ffb703}.mc.done{background:#c8f7d4;border-color:#2e9e57;opacity:.7}.mc.bad{background:#ffd6d6;border-color:#d64545}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;direction:ltr;margin:6px 0}.three span{background:#f4efff;border-radius:12px;padding:8px 4px;font-weight:800;font-size:16px;font-family:Arial,sans-serif;text-align:center}
+footer{text-align:center;margin-top:26px;font-size:12.5px;color:#4b4268;line-height:1.9;direction:ltr}
+</style></head><body>
+<script src="units.js"></script><div class="wrap">
+<div class="nav"><a href="unit1.html">↩ رجوع إلى الوحدة</a><a class="alt" href="index.html">🏠 كل الوحدات</a></div>
+<div class="hero"><div class="sun" aria-hidden="true">☀️</div><div><h1>ساحة الأنشطة مع شموسة</h1><p>Grade 3 · Unit 1<br>العب وتدرّب واجمع النجوم ⭐</p></div></div>
+<div class="score"><div class="pill">النجوم ⭐<b id="sStars">0</b></div><div class="pill">أنشطة أنجزتها<b id="sDone">0</b></div><div class="pill">أفضل سلسلة 🔥<b id="sBest">0</b></div></div>
+<div id="menu" class="menu"></div>
+<div id="panel" class="panel"></div>
+<footer>Prepared by<br><b>Mohamed Mostafa Al Shorbagy</b><br>Regional Supervisor · Wusta Governorate</footer>
+</div>
+<script>
+var CFG={"key": "xtra3", "wordVar": "AUD", "vaVar": "AUD", "runtime": true, "verbAudio": [], "wordAudio": ["audio1.js", "audio2.js", "audio3.js", "audio4.js", "audio5.js"], "imgFile": "imgs.js"};var D={};if(CFG.runtime){D={words:[],verbs:[]};(window.SEC||[]).forEach(function(s){s.words.forEach(function(w){D.words.push([w.en,w.ar,w.aud||null,w.img||null])})});(window.VERBS||[]).forEach(function(v){D.verbs.push({a1:v.aud,v1:v.v1,a2:'',v2:v.v2,a3:'',v3:v.v3,ar:v.ar})})}
+var W=D.words,V=D.verbs;
+var ST=(function(){try{return JSON.parse(localStorage.getItem(CFG.key))||{}}catch(e){return {}}})();ST.stars=ST.stars||0;ST.done=ST.done||0;ST.best=ST.best||0;
+function save(){try{localStorage.setItem(CFG.key,JSON.stringify(ST))}catch(e){}paint()}
+function paint(){sStars.textContent=ST.stars;sDone.textContent=ST.done;sBest.textContent=ST.best}paint();
+function $(s){return document.querySelector(s)}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function pick(a,n){return shuf(a).slice(0,n)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* audio (Shamousa clips already on the site) */
+window.VA=window.VA||{};var loaded={};var au=new Audio();
+function loadJs(list){return Promise.all(list.map(function(u){if(loaded[u])return loaded[u];loaded[u]=new Promise(function(res){var s=document.createElement('script');s.src=u;s.defer=true;s.onload=res;s.onerror=res;document.head.appendChild(s)});return loaded[u]}))}
+function clip(kind,key){if(kind==='v')return (window[CFG.vaVar||'VA']||{})[key];var m=window[CFG.wordVar]||{};return m[key]}
+function play(src){return new Promise(function(res){if(!src){res();return}try{au.pause();au.src=src.indexOf('data:')===0?src:'data:audio/mpeg;base64,'+src;au.onended=res;au.onerror=res;var p=au.play();if(p&&p.catch)p.catch(res)}catch(e){res()}})}
+setTimeout(function(){loadJs(CFG.verbAudio);loadJs(CFG.wordAudio)},1500);
+var verbsOK=V.filter(function(v){return v.v1&&v.v2&&v.v3});
+var irr=V.filter(function(v){return v.v1.toLowerCase()!==v.v2.toLowerCase()&&v.v2.indexOf('/')<0&&v.v3.indexOf('/')<0});
+function KEY(w){return w[2]||w[0]}var HASIMG=CFG.runtime&&D.words.some(function(w){return w[3]});var HASW=CFG.wordAudio.length>0;var ACT=[
+{id:'lw',k:'k1',ic:'👂',t:'اسمع واختر المعنى',e:'Listen & choose the meaning',d:'10 كلمات بصوت شموسة'},
+{id:'wa',k:'k2',ic:'🔤',t:'ما معنى الكلمة؟',e:'English → Arabic',d:'10 كلمات'},
+{id:'aw',k:'k3',ic:'🇸🇦',t:'اختر الكلمة الإنجليزية',e:'Arabic → English',d:'10 كلمات'},
+{id:'pw',k:'k4',ic:'🖼️',t:'ما اسم الصورة؟',e:'Picture → word',d:'10 صور من الكتاب'},
+{id:'sp',k:'k4',ic:'✍️',t:'اكتب الكلمة',e:'Spell the word',d:'اقرأ المعنى واكتب الإنجليزية'},
+{id:'v2',k:'k5',ic:'⏪',t:'الماضي V2',e:'Choose the past form',d:'10 أفعال'},
+{id:'v3',k:'k6',ic:'✅',t:'التصريف الثالث V3',e:'Choose the past participle',d:'10 أفعال'},
+{id:'vt',k:'k7',ic:'⌨️',t:'اكتب تصريف الفعل',e:'Type V2 or V3',d:'اسمع الفعل واكتب'},
+{id:'mm',k:'k8',ic:'🃏',t:'لعبة الذاكرة',e:'Memory match',d:'طابق الفعل مع معناه'}
+];
+ACT=ACT.filter(function(a){return (HASW||a.id!=='lw')&&(HASIMG||a.id!=='pw')&&(D.verbs.length>=8||['v2','v3','vt','mm'].indexOf(a.id)<0)});$('#menu').innerHTML=ACT.map(function(a){return '<button class="card '+a.k+'" data-id="'+a.id+'"><span class="ic">'+a.ic+'</span><span class="t">'+a.t+'</span><span class="e">'+a.e+'</span><span class="d">'+a.d+'</span></button>'}).join('');
+$('#menu').addEventListener('click',function(e){var b=e.target.closest('.card');if(b)start(b.dataset.id)});
+var PRAISE=['أحسنت! ⭐','ممتاز! 🌟','رائع! 🎉','شاطر! 👏','إجابة صحيحة! ✨'],RETRY=['قريب! حاول في السؤال التالي 💪','لا بأس، التكرار يصنع الإتقان 🌈','خطأ بسيط، انتبه للإجابة الصحيحة 👀'];
+var P=$('#panel'),run=null;
+function show(h){P.innerHTML=h;P.classList.add('on');P.scrollIntoView({behavior:'smooth',block:'start'})}
+function wordsWithClip(){var m=window[CFG.wordVar]||{};var a=W.filter(function(w){return m[KEY(w)]});return a.length>=12?a:W}
+function start(id){
+ var items;
+ if(id==='lw'){loadJs(CFG.wordAudio).then(function(){var a=wordsWithClip();items=pick(a,10).map(function(w){var o=pick(W.filter(function(x){return x[1]!==w[1]}),3).map(function(x){return x[1]});return {kind:'w',audio:HASW?KEY(w):null,q:'🔊',ans:w[1],opts:shuf(o.concat([w[1]])),ar:true}});begin(id,items)});return}
+ if(id==='wa'){items=pick(W,10).map(function(w){var o=pick(W.filter(function(x){return x[1]!==w[1]}),3).map(function(x){return x[1]});return {q:w[0],qen:true,ans:w[1],opts:shuf(o.concat([w[1]])),ar:true,audio:HASW?KEY(w):null}});begin(id,items);return}
+ if(id==='aw'){items=pick(W,10).map(function(w){var o=pick(W.filter(function(x){return x[0]!==w[0]}),3).map(function(x){return x[0]});return {q:w[1],ans:w[0],opts:shuf(o.concat([w[0]])),en:true,audio:HASW?KEY(w):null}});begin(id,items);return}
+ if(id==='pw'){loadJs([CFG.imgFile]).then(function(){var pool=W.filter(function(w){return w[3]&&window.IMGS&&window.IMGS[w[3]]});items=pick(pool,10).map(function(w){var o=pick(pool.filter(function(x){return x[0]!==w[0]}),3).map(function(x){return x[0]});return {q:'IMG',img:window.IMGS[w[3]],ans:w[0],opts:shuf(o.concat([w[0]])),en:true,audio:HASW?KEY(w):null}});begin(id,items)});return}
+ if(id==='sp'){items=pick(W.filter(function(w){return /^[a-z' -]+$/i.test(w[0])&&w[0].length<=14}),10).map(function(w){return {q:w[1],ans:w[0],type:true,hint:w[0].charAt(0)+' '+w[0].slice(1).replace(/[^ ]/g,'_ ').trim(),audio:HASW?KEY(w):null}});begin(id,items);return}
+ if(id==='v2'||id==='v3'){var n=id==='v2'?'v2':'v3';var pool=irr.length>12?irr:verbsOK;items=pick(pool,10).map(function(v){var wrong=pick(pool.filter(function(x){return x[n]!==v[n]&&x.v1!==v.v1}),3).map(function(x){return x[n]});return {q:v.v1,qen:true,sub:v.ar,ans:v[n],opts:shuf(wrong.concat([v[n]])),en:true,vaud:v.a1}});begin(id,items);return}
+ if(id==='vt'){loadJs(CFG.verbAudio).then(function(){var pool=irr.length>12?irr:verbsOK;items=pick(pool,10).map(function(v){var n=Math.random()<.5?'v2':'v3';return {q:v.v1,qen:true,sub:v.ar+' · اكتب '+(n==='v2'?'الماضي V2':'التصريف الثالث V3'),ans:v[n],type:true,vaud:v.a1,hint:v.v1+' → ?'}});begin(id,items)});return}
+ if(id==='mm'){memory();return}
+}
+function begin(id,items){run={id:id,items:items,i:0,ok:0,streak:0,locked:false};ask()}
+function ask(){var r=run,it=r.items[r.i];if(!it){return fin()}
+ var h='<div class="prog"><i style="width:'+(r.i/r.items.length*100)+'%"></i></div><div class="q">';
+ if(it.q==='🔊'){h+='<button class="spkb" id="sp">🔊</button><span class="hint">اضغط واستمع ثم اختر المعنى الصحيح</span>'}
+ else if(it.q==='IMG'){h+='<img src="'+it.img+'" alt="" style="max-width:100%;max-height:220px;border-radius:16px;border:3px solid #ffd166"><span class="hint">ما الكلمة المناسبة للصورة؟</span>'}
+ else h+='<span class="'+(it.qen?'big':'ar')+'">'+esc(it.q)+'</span>'+(it.sub?'<span class="hint">'+esc(it.sub)+'</span>':'')+((it.audio||it.vaud)&&it.qen?'<div class="row"><button class="btn" id="sp">🔊 استمع</button></div>':'');
+ h+='</div>';
+ if(it.type){h+='<input class="typ" id="ty" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(it.hint||'')+'"><div class="row"><button class="btn" id="chk">تحقق ✔</button></div>'}
+ else h+='<div class="opts '+(it.en?'':'two')+'">'+it.opts.map(function(o,k){return '<button class="opt '+(it.en?'en':'')+'" data-o="'+esc(o)+'">'+esc(o)+'</button>'}).join('')+'</div>';
+ h+='<div class="fb" id="fb"></div><div class="row" id="nx"></div>';
+ show(h);r.locked=false;
+ var s=$('#sp');if(s){s.onclick=function(){say(it)};if(it.q==='🔊')setTimeout(function(){say(it)},300)}
+ if(it.type){var ty=$('#ty');ty.focus();ty.onkeydown=function(e){if(e.key==='Enter')check(ty.value)};$('#chk').onclick=function(){check(ty.value)}}
+ else P.querySelector('.opts').onclick=function(e){var b=e.target.closest('.opt');if(b&&!r.locked)check(b.dataset.o,b)};
+}
+function say(it){if(it.vaud){loadJs(CFG.verbAudio).then(function(){play(clip('v',it.vaud))});return}
+ loadJs(CFG.wordAudio).then(function(){play(clip('w',it.audio))})}
+function norm(s){return String(s).toLowerCase().replace(/\s+/g,' ').trim()}
+function check(val,btn){var r=run,it=r.items[r.i];if(r.locked)return;r.locked=true;
+ var okk=it.type?(norm(val)===norm(it.ans)||norm(it.ans).split(' / ').indexOf(norm(val))>=0):val===it.ans;
+ if(okk){r.ok++;r.streak++;if(r.streak>ST.best){ST.best=r.streak}}else r.streak=0;
+ if(btn){btn.classList.add(okk?'ok':'no');if(!okk)[].forEach.call(P.querySelectorAll('.opt'),function(b){if(b.dataset.o===it.ans)b.classList.add('ok')})}
+ var fb=$('#fb');fb.className='fb '+(okk?'ok':'no');
+ fb.innerHTML=okk?PRAISE[Math.floor(Math.random()*PRAISE.length)]:RETRY[Math.floor(Math.random()*RETRY.length)]+'<br><span style="direction:ltr;display:inline-block;font-family:Arial">الإجابة: <b>'+esc(it.ans)+'</b></span>';
+ var last=r.i===r.items.length-1;$('#nx').innerHTML='<button class="btn" id="go">'+(last?'النتيجة 🎁':'التالي ➜')+'</button>';
+ $('#go').onclick=function(){r.i++;ask()};
+ if(!it.vaud&&it.audio&&okk&&it.kind!=='w'){}
+}
+function fin(){var r=run,n=r.items.length,st=r.ok>=9?3:r.ok>=7?2:r.ok>=5?1:0;ST.stars+=r.ok;ST.done++;save();
+ show('<div class="end"><div class="stars">'+'⭐'.repeat(st)+'☆'.repeat(3-st)+'</div><h2>'+r.ok+' من '+n+'</h2><p style="font-size:17px">'+(st==3?'مذهل! أنت نجم الساحة 🌟':st==2?'جميل جدًا! كرر لتصل إلى الكمال 💪':'تدرّب مرة أخرى وسترى الفرق 🌈')+'</p><div class="row"><button class="btn" id="again">العب مرة أخرى 🔁</button><button class="btn" style="background:#0e9f8a;box-shadow:0 3px 0 #0a6e5f" id="men">كل الأنشطة</button></div></div>');
+ $('#again').onclick=function(){start(r.id)};$('#men').onclick=function(){P.classList.remove('on');window.scrollTo({top:0,behavior:'smooth'})}}
+function memory(){var vs=pick(verbsOK.filter(function(v){return v.v1.length<12&&v.ar.length<14}),6),cards=[];vs.forEach(function(v){cards.push({k:v.v1,t:v.v1,en:1});cards.push({k:v.v1,t:v.ar,en:0})});cards=shuf(cards);
+ var h='<div class="prog"><i id="mp" style="width:0"></i></div><div class="q"><span class="hint">اضغط فعلًا ثم معناه بالعربي لتطابقهما</span></div><div class="mem">'+cards.map(function(c,i){return '<button class="mc '+(c.en?'en':'')+'" data-i="'+i+'">'+esc(c.t)+'</button>'}).join('')+'</div><div class="fb" id="fb"></div>';show(h);
+ var sel=null,done=0,miss=0;P.querySelector('.mem').onclick=function(e){var b=e.target.closest('.mc');if(!b||b.classList.contains('done'))return;var c=cards[b.dataset.i];
+  if(!sel){sel=b;b.classList.add('sel');return}if(sel===b){b.classList.remove('sel');sel=null;return}
+  var a=cards[sel.dataset.i];if(a.k===c.k&&a.en!==c.en){sel.classList.remove('sel');sel.classList.add('done');b.classList.add('done');sel=null;done++;$('#mp').style.width=(done/6*100)+'%';$('#fb').className='fb ok';$('#fb').textContent=PRAISE[done%5];
+   if(done===6){ST.stars+=Math.max(2,8-miss);ST.done++;save();$('#fb').innerHTML='🎉 أنجزت اللعبة بـ '+miss+' أخطاء!<div class="row"><button class="btn" id="again">مرة أخرى 🔁</button></div>';$('#again').onclick=memory}}
+  else{miss++;var s0=sel;sel=null;s0.classList.remove('sel');s0.classList.add('bad');b.classList.add('bad');setTimeout(function(){s0.classList.remove('bad');b.classList.remove('bad')},600);$('#fb').className='fb no';$('#fb').textContent='ليست مطابقة، جرّب مرة أخرى'}}}
+</script></body></html>
