@@ -138,4 +138,4 @@ function memory(){var vs=pick(verbsOK.filter(function(v){return v.v1.length<12&&
   var a=cards[sel.dataset.i];if(a.k===c.k&&a.en!==c.en){sel.classList.remove('sel');sel.classList.add('done');b.classList.add('done');sel=null;done++;praise();$('#mp').style.width=(done/6*100)+'%';$('#fb').className='fb ok';$('#fb').textContent=PRAISE[done%5];
    if(done===6){ST.stars+=Math.max(2,8-miss);ST.done++;save();$('#fb').innerHTML='🎉 أنجزت اللعبة بـ '+miss+' أخطاء!<div class="row"><button class="btn" id="again">مرة أخرى 🔁</button></div>';$('#again').onclick=memory}}
   else{miss++;var s0=sel;sel=null;s0.classList.remove('sel');s0.classList.add('bad');b.classList.add('bad');setTimeout(function(){s0.classList.remove('bad');b.classList.remove('bad')},600);$('#fb').className='fb no';$('#fb').textContent='ليست مطابقة، جرّب مرة أخرى'}}}
-</script></body></html>
+</script><script src="fb-audio.js?v=1"></script></body></html>
