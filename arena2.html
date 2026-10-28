@@ -121,4 +121,6 @@ var DAY=[['get up','🛏️',0],['pray','🤲',1],['have breakfast','🍳',2],['
 function seq(g){var items=DAY.slice(0,8),want=0,ok=0,miss=0;
  function draw(){show('<div class="prog"><i style="width:'+(want/items.length*100)+'%"></i></div><div class="ptitle">🌞 اضغط الأنشطة بالترتيب من الصباح إلى الليل</div><div class="opts w" id="o">'+shuf(items).map(function(x){var done=x[2]<want;return '<button class="op" data-n="'+x[2]+'" '+(done?'disabled style="opacity:.35"':'')+'><span class="em" style="font-size:34px;margin-inline-end:10px">'+x[1]+'</span>'+x[0]+'</button>'}).join('')+'</div><div class="fb" id="fb"></div>');
   $('#o').onclick=function(e){var b=e.target.closest('.op');if(!b||b.disabled)return;var n=+b.dataset.n;var w=DAY[n];var sent=null;(window.SEC||[]).forEach(function(s){(s.words||[]).forEach(function(x){if(x.en===w[0])sent=x.sent})});if(n===want){ok++;want++;play(sent,function(){cheer(true)});if(want==items.length){setTimeout(function(){endScreen(Math.max(0,items.length-miss),items.length,g)},900)}else draw()}else{miss++;b.classList.add('no');var fb=$('#fb');fb.className='fb no';fb.textContent='فكّر مرة ثانية: ماذا نفعل أولًا؟ 💪';cheer(false)}}}draw()}
-</script></body></html>
+</script><script>window.goatcounter={path:function(p){return "/g3"+p}};</script>
+<script data-goatcounter="https://shorbagy-sites.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body></html>
