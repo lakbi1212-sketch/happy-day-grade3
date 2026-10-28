@@ -67,4 +67,6 @@ function grade(ok,ans){if(R.lock)return;R.lock=true;var it=R.items[R.i];if(ok)R.
 function fin(){var n=R.items.length,st=R.ok>=9?3:R.ok>=7?2:R.ok>=5?1:0;ST.stars+=R.ok;ST.done++;save();
  show('<div class="end"><div class="stars">'+'⭐'.repeat(st)+'☆'.repeat(3-st)+'</div><h2>'+R.ok+' من '+n+'</h2><p style="font-size:17px">'+(st==3?'مذهل! أتقنت القاعدة 🌟':st==2?'جميل جدًا! كرر لتصل إلى الكمال 💪':'اقرأ القاعدة مرة أخرى وجرّب ثانية 🌈')+'</p><div class="row"><button class="btn" id="again">مرة أخرى 🔁</button><button class="btn" style="background:#0e9f8a;box-shadow:0 3px 0 #0a6e5f" id="men">كل المواضيع</button></div></div>');
  var t=R.t;$('#again').onclick=function(){R={t:t,i:0,ok:0,items:shuf(t.items).slice(0,10),lock:false};ask()};$('#men').onclick=function(){P.classList.remove('on');window.scrollTo({top:0,behavior:'smooth'})}}
-</script></body></html>
+</script><script>window.goatcounter={path:function(p){return "/g3"+p}};</script>
+<script data-goatcounter="https://shorbagy-sites.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body></html>
