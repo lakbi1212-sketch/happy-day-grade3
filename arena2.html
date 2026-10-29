@@ -21,7 +21,7 @@ body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Naskh Ara
 .prog{height:12px;background:#eee;border-radius:99px;overflow:hidden;margin-bottom:12px}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffb703,#fb5607);transition:width .3s}
 .mem{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .mc{aspect-ratio:1;border:0;border-radius:18px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;font-size:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;box-shadow:0 4px 0 #4a2a94;padding:4px;font-weight:800}
-.mc.up{background:#fff;color:#241540;box-shadow:0 0 0 4px #ffd166;font-size:19px;line-height:1.2;direction:ltr;word-break:break-word}.mc.up img{width:100%;height:100%;object-fit:cover;border-radius:14px}.mc.up .em{font-size:44px}
+.mc.up{background:#fff;color:#241540;box-shadow:0 0 0 4px #ffd166;font-size:19px;line-height:1.2;direction:ltr;overflow-wrap:normal;word-break:keep-all;hyphens:none}.mc.up img{width:100%;height:100%;object-fit:cover;border-radius:14px}.mc.up .em{font-size:44px}
 .mc.done{background:#c8f7d4;box-shadow:0 0 0 4px #2e9e57;color:#166e46;animation:pop .4s}@keyframes pop{50%{transform:scale(1.12)}}
 .big{text-align:center;margin:8px 0}.big img{width:min(78vw,300px);height:min(78vw,300px);object-fit:cover;border-radius:22px;border:4px solid #ffd166}.big .em{font-size:150px;line-height:1.1}
 .say{display:flex;justify-content:center;margin:10px 0}
@@ -123,4 +123,5 @@ function seq(g){var items=DAY.slice(0,8),want=0,ok=0,miss=0;
   $('#o').onclick=function(e){var b=e.target.closest('.op');if(!b||b.disabled)return;var n=+b.dataset.n;var w=DAY[n];var sent=null;(window.SEC||[]).forEach(function(s){(s.words||[]).forEach(function(x){if(x.en===w[0])sent=x.sent})});if(n===want){ok++;want++;play(sent,function(){cheer(true)});if(want==items.length){setTimeout(function(){endScreen(Math.max(0,items.length-miss),items.length,g)},900)}else draw()}else{miss++;b.classList.add('no');var fb=$('#fb');fb.className='fb no';fb.textContent='فكّر مرة ثانية: ماذا نفعل أولًا؟ 💪';cheer(false)}}}draw()}
 </script><script>window.goatcounter={path:function(p){return "/g3"+p}};</script>
 <script data-goatcounter="https://shorbagy-sites.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-mcfit>(function(){function fit(){document.querySelectorAll(".mc.up").forEach(function(c){if(c.querySelector("img"))return;c.style.fontSize="";var s=19;while(s>9&&(c.scrollWidth>c.clientWidth||c.scrollHeight>c.clientHeight)){s--;c.style.fontSize=s+"px"}})}new MutationObserver(fit).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:["class"]});window.addEventListener("resize",fit);setTimeout(fit,300)})();</script>
 </body></html>
