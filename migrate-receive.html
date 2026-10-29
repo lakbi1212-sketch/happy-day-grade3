@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title></title></head>
+<body><script>
+(function () {
+  try {
+    if (window.top === window.self) return; // only acts inside the handoff iframe
+    var m = (location.hash || "").match(/[#&]from=([^&]+)/);
+    if (!m) return;
+    var from = decodeURIComponent(m[1]);
+    if (!/^https:\/\/[a-z0-9-]+\.onrender\.com$/.test(from)) return; // only accept our old origins
+    window.addEventListener("message", function (e) {
+      try {
+        if (e.origin !== from) return;
+        if (!e.data || e.data.type !== "itqan-migrate-push" || !e.data.data) return;
+        var d = e.data.data;
+        for (var k in d) {
+          if (!Object.prototype.hasOwnProperty.call(d, k)) continue;
+          if (localStorage.getItem(k) === null) localStorage.setItem(k, d[k]); // merge: never overwrite
+        }
+        localStorage.setItem("__itqan_migrated", "1");
+        e.source.postMessage({ type: "itqan-migrate-ack" }, e.origin);
+      } catch (err) {}
+    });
+  } catch (e) {}
+})();
+</script><script src="redirect.js"></script>
+</body></html>
