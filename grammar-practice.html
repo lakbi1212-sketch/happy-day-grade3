@@ -50,7 +50,7 @@ $('#menu').onclick=function(e){var b=e.target.closest('.card');if(b)intro(+b.dat
 var P=$('#panel'),R=null;
 function show(h){P.innerHTML=h;P.classList.add('on');P.scrollIntoView({behavior:'smooth',block:'start'})}
 var PR=['أحسنت! ⭐','ممتاز! 🌟','رائع! 🎉','شاطر! 👏'];
-function intro(i){var t=TOP[i];show('<div class="rule"><b>'+t.ar+'</b><br>'+t.rule+'</div><div class="row"><button class="btn" id="go">ابدأ التمارين 🚀</button></div>');$('#go').onclick=function(){R={t:t,i:0,ok:0,items:shuf(t.items).slice(0,10),lock:false};ask()}}
+function intro(i){var t=TOP[i];show('<div class="rule" dir="rtl"><b>'+t.ar+'</b><br>'+bdiEn(t.rule)+'</div><div class="row"><button class="btn" id="go">ابدأ التمارين 🚀</button></div>');$('#go').onclick=function(){R={t:t,i:0,ok:0,items:shuf(t.items).slice(0,10),lock:false};ask()}}
 function ask(){var it=R.items[R.i];if(!it)return fin();
  var h='<div class="prog"><i style="width:'+(R.i/R.items.length*100)+'%"></i></div>';
  if(it.k==='order'){h+='<div class="q"><small>رتّب الكلمات لتكوّن جملة صحيحة</small></div><div class="slot" id="slot"></div><div class="bank" id="bank">'+shuf(it.w).map(function(w,i){return '<button class="tok" data-w="'+esc(w)+'">'+esc(w)+'</button>'}).join('')+'</div><div class="row"><button class="btn" id="clr" style="background:#8a8399;box-shadow:0 3px 0 #5f5a6b">مسح</button><button class="btn" id="chk">تحقق ✔</button></div>'}
@@ -61,13 +61,15 @@ function ask(){var it=R.items[R.i];if(!it)return fin();
   $('#clr').onclick=function(){if(!R.lock)ask()};$('#chk').onclick=function(){grade(pick.join(' ')===it.w.join(' ')||pick.join(' ')===it.a,it.a)}}
  else if(it.k==='type'){var ty=$('#ty');ty.focus();var f=function(){grade(ty.value.trim().toLowerCase().replace(/\s+/g,' ')===it.a.toLowerCase(),it.a)};$('#chk').onclick=f;ty.onkeydown=function(e){if(e.key==='Enter')f()}}
  else $('.opts').onclick=function(e){var b=e.target.closest('.opt');if(!b||R.lock)return;var ok=b.dataset.o===it.a;b.classList.add(ok?'ok':'no');if(!ok)[].forEach.call(document.querySelectorAll('.opt'),function(x){if(x.dataset.o===it.a)x.classList.add('ok')});grade(ok,it.a)}}
+function bdiEn(s){var ps=s.split(/(<[^>]+>)/g);for(var i=0;i<ps.length;i+=2)ps[i]=ps[i].replace(/[A-Za-z][A-Za-z0-9',.\-]*(?: [A-Za-z0-9',.\-]+)*[A-Za-z0-9]|[A-Za-z]/g,function(m){return '<bdi>'+m+'</bdi>'});return ps.join('')}
 function grade(ok,ans){if(R.lock)return;R.lock=true;var it=R.items[R.i];if(ok)R.ok++;var fb=$('#fb');fb.className='fb '+(ok?'ok':'no');
- fb.innerHTML=(ok?PR[Math.floor(Math.random()*PR.length)]:'قريب! خذ الإجابة الصحيحة وتعلّم منها 💪<br><span style="direction:ltr;display:inline-block;font-family:Arial">'+esc(ans)+'</span>')+(it.why?'<br><span style="font-weight:600;font-size:15px;color:#4b4268">'+it.why+'</span>':'');
+ if(window.FX)FX.play(ok,function(){try{var k=(ans+'').toLowerCase();if(window.AUDW&&AUDW[k])new Audio(AUDW[k]).play()}catch(e){}});
+ fb.innerHTML=(ok?PR[Math.floor(Math.random()*PR.length)]:'قريب! خذ الإجابة الصحيحة وتعلّم منها 💪<br><span style="direction:ltr;display:inline-block;font-family:Arial">'+esc(ans)+'</span>')+(it.why?'<br><span dir="rtl" style="font-weight:600;font-size:15px;color:#4b4268">'+bdiEn(it.why)+'</span>':'');
  var last=R.i===R.items.length-1;$('#nx').innerHTML='<button class="btn" id="go">'+(last?'النتيجة 🎁':'التالي ➜')+'</button>';$('#go').onclick=function(){R.i++;ask()}}
 function fin(){var n=R.items.length,st=R.ok>=9?3:R.ok>=7?2:R.ok>=5?1:0;ST.stars+=R.ok;ST.done++;save();
  show('<div class="end"><div class="stars">'+'⭐'.repeat(st)+'☆'.repeat(3-st)+'</div><h2>'+R.ok+' من '+n+'</h2><p style="font-size:17px">'+(st==3?'مذهل! أتقنت القاعدة 🌟':st==2?'جميل جدًا! كرر لتصل إلى الكمال 💪':'اقرأ القاعدة مرة أخرى وجرّب ثانية 🌈')+'</p><div class="row"><button class="btn" id="again">مرة أخرى 🔁</button><button class="btn" style="background:#0e9f8a;box-shadow:0 3px 0 #0a6e5f" id="men">كل المواضيع</button></div></div>');
  var t=R.t;$('#again').onclick=function(){R={t:t,i:0,ok:0,items:shuf(t.items).slice(0,10),lock:false};ask()};$('#men').onclick=function(){P.classList.remove('on');window.scrollTo({top:0,behavior:'smooth'})}}
 </script><script>window.goatcounter={path:function(p){return "/g3"+p}};</script>
 <script data-goatcounter="https://shorbagy-sites.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="redirect.js"></script>
+<script src="redirect.js"></script><script src="fx-praise.js"></script><script src="fx-retry.js"></script>
 </body></html>
