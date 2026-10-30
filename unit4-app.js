@@ -22,7 +22,7 @@ function mix(a){return a.slice().sort(()=>Math.random()-.5)}
 let questions=[];
 function start(kind){idx=0;score=0;wrong=0;
 if(kind==='grammarQuiz')questions=mix(D.rules[rule].questions).map(q=>({...q,title:q.q}));
-else if(kind==='sentence')questions=mix(all.filter(w=>['jobs','transport'].some(s=>w.aud.includes(s)))).slice(0,10).map(w=>({title:w.sentence.replace(w.en,'___'),options:mix([w.en,...mix(all.filter(x=>x.en!==w.en)).slice(0,2).map(x=>x.en)]),answer:w.en,hint:w.sentenceAr,audio:w.sent}));
+else if(kind==='sentence')questions=mix(all.filter(w=>['jobs','transport'].some(s=>w.aud.includes(s))&&w.sentence.includes(w.en))).slice(0,10).map(w=>({title:w.sentence.replace(w.en,'___'),options:mix([w.en,...mix(all.filter(x=>x.en!==w.en)).slice(0,2).map(x=>x.en)]),answer:w.en,hint:w.sentenceAr,audio:w.sent}));
 else if(kind==='meaning')questions=mix(all).slice(0,10).map(w=>({title:w.en,hint:'اختر المعنى الصحيح',options:mix([w.ar,...mix(all.filter(x=>x.ar!==w.ar)).slice(0,2).map(x=>x.ar)]),answer:w.ar,audio:w.aud}));
 else if(kind==='listen')questions=mix(all).slice(0,10).map(w=>({title:'استمع ثم اختر الكلمة',options:mix([w.en,...mix(all.filter(x=>x.en!==w.en)).slice(0,2).map(x=>x.en)]),answer:w.en,audio:w.aud}));
 else if(kind==='builder'){buildIndex=0;go('builder');return}
