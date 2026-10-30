@@ -19,7 +19,7 @@
       text.data.replace(runs, function (word, index) {
         fragment.appendChild(document.createTextNode(text.data.slice(last, index)));
         var bdi = document.createElement('bdi');
-        bdi.dir = 'ltr'; bdi.lang = 'en'; bdi.className = 'grammar-en'; bdi.textContent = word;
+        bdi.dir = 'ltr'; bdi.lang = 'en'; bdi.className = 'grammar-en'; if (word.trim().split(/\s+/).length >= 5) bdi.classList.add('grammar-en-sentence'); bdi.textContent = word;
         fragment.appendChild(bdi); last = index + word.length;
         return word;
       });
@@ -34,7 +34,7 @@
     });
   }
   var style = document.createElement('style');
-  style.textContent = 'bdi.grammar-en{direction:ltr;unicode-bidi:isolate;font-family:Arial,sans-serif;overflow-wrap:break-word}.grammar-mixed{unicode-bidi:isolate;line-height:1.9}.grammar-rule-row{display:block;direction:rtl;text-align:right;margin:.35em 0}.grammar-form-row{display:block;direction:ltr;unicode-bidi:isolate;text-align:center;margin:.35em 0;line-height:1.6}';
+  style.textContent = 'bdi.grammar-en{direction:ltr;unicode-bidi:isolate;font-family:Arial,sans-serif;overflow-wrap:break-word}bdi.grammar-en-sentence{display:block;text-align:left;margin:.3em 0;line-height:1.7}.grammar-mixed{unicode-bidi:isolate;line-height:1.9}.grammar-rule-row{display:block;direction:rtl;text-align:right;margin:.35em 0}.grammar-form-row{display:block;direction:ltr;unicode-bidi:isolate;text-align:center;margin:.35em 0;line-height:1.6}';
   document.head.appendChild(style);
   var observer = new MutationObserver(function (changes) {
     observer.disconnect();
