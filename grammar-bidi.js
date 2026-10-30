@@ -1,10 +1,39 @@
-/* Arabic/English grammar typography: phrases on own lines; isolate single terms. */
+/* Arabic/English grammar typography: phrases across inline tags on own lines; isolate single terms. */
 (function () {
   'use strict';
   var arabic = /[\u0600-\u06ff]/;
   var english = /[A-Za-z]/;
   var runs = /[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*(?:(?:[ \t]+|[,;:!?\.][ \t]+)[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*)*(?:[.!?](?=\s|$))?/g;
+
+  // Match visible English across existing bold/colour tags without flattening them.
+  function joinInlinePhrases(root) {
+    var candidates = [];
+    if (root.nodeType === 1 && root.matches('p,li,small,summary,label,h2,h3,h4,.gar,.rule,.gea,.fb,.ar')) candidates.push(root);
+    if (root.querySelectorAll) candidates = candidates.concat(Array.from(root.querySelectorAll('p,li,small,summary,label,h2,h3,h4,.gar,.rule,.gea,.fb,.ar')));
+    candidates.reverse().forEach(function (block) {
+      if (!arabic.test(block.textContent) || !english.test(block.textContent) || block.closest('script,style,bdi,pre,code') || block.querySelector('div,p,li,section,article')) return;
+      var walk = document.createTreeWalker(block, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT), entries = [], flat = '', n;
+      while ((n = walk.nextNode())) {
+        if (n.nodeType === 1 && (n.tagName === 'BR' || n.classList.contains('grammar-en-sentence'))) flat += '\n';
+        if (n.nodeType !== 3) continue;
+        if (n.parentElement.closest('.grammar-en-sentence,script,style')) { flat += '\n'; continue; }
+        entries.push({node:n,start:flat.length,end:flat.length+n.data.length}); flat += n.data;
+      }
+      var expression = /[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*(?:(?:[ \t]+|[,;:!?\.][ \t]+|[ \t]*[\/+][ \t]*)[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*)*(?:[.!?](?=\s|$))?/g;
+      var matches = [], match;
+      while ((match = expression.exec(flat))) if (match[0].trim().split(/\s+/).length >= 2) matches.push({start:match.index,end:match.index+match[0].length});
+      matches.reverse().forEach(function (m) {
+        var first = entries.find(function(e){return e.start <= m.start && e.end > m.start;});
+        var last = entries.find(function(e){return e.start < m.end && e.end >= m.end;});
+        if (!first || !last || !first.node.isConnected || !last.node.isConnected) return;
+        var range = document.createRange(); range.setStart(first.node,m.start-first.start); range.setEnd(last.node,m.end-last.start);
+        var wrap = document.createElement('bdi'); wrap.dir='ltr'; wrap.lang='en'; wrap.className='grammar-en grammar-en-sentence'; wrap.appendChild(range.extractContents()); range.insertNode(wrap);
+      });
+    });
+  }
+
   function format(root) {
+    joinInlinePhrases(root);
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     var texts = [], node;
     while ((node = walker.nextNode())) {
