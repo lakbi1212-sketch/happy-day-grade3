@@ -3,7 +3,7 @@
   'use strict';
   var arabic = /[\u0600-\u06ff]/;
   var english = /[A-Za-z]/;
-  var runs = /[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*(?:[ \t]+[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*)*(?:[.!?](?=\s|$))?/g;
+  var runs = /[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*(?:(?:[ \t]+|[,;:!?\.][ \t]+)[A-Za-z0-9]+(?:[’'\-][A-Za-z0-9]+)*)*(?:[.!?](?=\s|$))?/g;
   function format(root) {
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     var texts = [], node;
@@ -34,7 +34,7 @@
     });
   }
   var style = document.createElement('style');
-  style.textContent = 'bdi.grammar-en{direction:ltr;unicode-bidi:isolate;font-family:Arial,sans-serif;overflow-wrap:break-word}.grammar-mixed{unicode-bidi:plaintext;line-height:1.9}.grammar-rule-row{display:block;direction:rtl;text-align:right;margin:.35em 0}.grammar-form-row{display:block;direction:ltr;unicode-bidi:isolate;text-align:center;margin:.35em 0;line-height:1.6}';
+  style.textContent = 'bdi.grammar-en{direction:ltr;unicode-bidi:isolate;font-family:Arial,sans-serif;overflow-wrap:break-word}.grammar-mixed{unicode-bidi:isolate;line-height:1.9}.grammar-rule-row{display:block;direction:rtl;text-align:right;margin:.35em 0}.grammar-form-row{display:block;direction:ltr;unicode-bidi:isolate;text-align:center;margin:.35em 0;line-height:1.6}';
   document.head.appendChild(style);
   var observer = new MutationObserver(function (changes) {
     observer.disconnect();
