@@ -1,4 +1,4 @@
-/* Arabic/English grammar typography: preserve content, isolate direction. */
+/* Arabic/English grammar typography: phrases on own lines; isolate single terms. */
 (function () {
   'use strict';
   var arabic = /[\u0600-\u06ff]/;
@@ -19,7 +19,7 @@
       text.data.replace(runs, function (word, index) {
         fragment.appendChild(document.createTextNode(text.data.slice(last, index)));
         var bdi = document.createElement('bdi');
-        bdi.dir = 'ltr'; bdi.lang = 'en'; bdi.className = 'grammar-en'; if (word.trim().split(/\s+/).length >= 5) bdi.classList.add('grammar-en-sentence'); bdi.textContent = word;
+        bdi.dir = 'ltr'; bdi.lang = 'en'; bdi.className = 'grammar-en'; if (word.trim().split(/\s+/).length >= 2 || /[.!?]$/.test(word)) bdi.classList.add('grammar-en-sentence'); bdi.textContent = word;
         fragment.appendChild(bdi); last = index + word.length;
         return word;
       });
