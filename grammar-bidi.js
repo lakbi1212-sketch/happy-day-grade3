@@ -5,6 +5,7 @@
   var prose = 'p,li,small,summary,label,h2,h3,h4,.gar,.rule,.gea,.fb,.ar,.card .t';
   function sentence(s) {
     var t = s.replace(/[.!?]+$/, '').trim();
+    if (!/[.!?]$/.test(s.trim())) return false; // fragments (It is polite to) stay inline with their Arabic
     if (/[\/+←→=]/.test(t) || /^V\d$/i.test(t)) return false;
     if (t.split(/\s+/).length < 3) return false;
     return /^(?:I|you|we|they|he|she|it|this|that|these|those|there|when|what|where|why|how|who|can|could|do|does|did|is|are|was|were|have|has|had|my|your|our|their|the|a|an|if|don't|let's)\b/i.test(t) && /\b(?:am|is|are|was|were|be|been|being|have|has|had|do|does|did|can|could|will|would|should|must|may|might|wish|like|likes|play|plays|go|goes|get|gets|work|works|finished|started|arrived|left|called|took|said|found|bought|saw|spent|lived|used|need|want|eat|read|watch|don't|doesn't|didn't|isn't|aren't|I'm|it's|I'd|he'd)\b/i.test(t);
