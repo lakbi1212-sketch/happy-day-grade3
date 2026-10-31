@@ -271,7 +271,7 @@ function ask(){
   $('btn-next').style.display='none';
   /* listen support */
   var lb=$('ui-listen');lb.innerHTML='';
-  var clip=q.aud?wordAudio(q.aud):null;
+  var clip=(q.aud&&{vocab:1,listen:1,translation:1}[q.type])?wordAudio(q.aud):null;
   if(clip){
     var b=document.createElement('button');b.className='listenbtn';b.type='button';
     b.textContent=q.type==='listen'?'🔊 اضغط للاستماع':'🔊 استمع';
