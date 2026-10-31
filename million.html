@@ -337,11 +337,12 @@ function endGame(won){
   game.over=true;stopAll();stopVoice();
   var prize=won?1000000:safePrize();
   if(won){play('opening-milestone.mp3');setTimeout(praise,1200);confetti()}
-  $('end-title').textContent=won?'مبروك! ربحت المليون! 🏆':(prize>0?'انتهت اللعبة — أحسنت!':'انتهت اللعبة');
+  var nm=(game.name||'').trim();
+  $('end-title').textContent=won?('مبروك يا '+(nm||'بطل')+'! ربحت المليون! 🏆'):(prize>0?'انتهت اللعبة — أحسنت'+(nm?' يا '+nm:'')+'!':'انتهت اللعبة');
   $('end-prize').textContent=fmt(prize);
   $('end-msg').textContent=won?
     'وصلت إلى قمة السلّم وأجبت على الأسئلة الخمسة عشر كلها! شموسة فخورة بك ☀️':
-    (prize>0?'خرجت بمبلغ آمن '+fmt(prize)+'.\nحاول مرة أخرى لتصل إلى المليون!':'لا بأس يا بطل!\nحاول مرة أخرى — شموسة تؤمن بك! ☀️');
+    (prize>0?'خرجت بمبلغ آمن '+fmt(prize)+'.\nحاول مرة أخرى لتصل إلى المليون!':'لا بأس يا '+(nm||'بطل')+'!\nحاول مرة أخرى — شموسة تؤمن بك! ☀️');
   show('scr-end');
   saveResult(prize,won);
 }
@@ -423,7 +424,7 @@ $('btn-next').onclick=function(){game.i++;ask()};
 $('btn-withdraw').onclick=function(){
   if(game.over)return;game.over=true;stopAll();stopVoice();
   var prize=curPrize();
-  $('end-title').textContent='انسحبت بذكاء!';
+  $('end-title').textContent='انسحبت بذكاء'+((game.name||'').trim()?' يا '+game.name.trim():'')+'!';
   $('end-prize').textContent=fmt(prize);
   $('end-msg').textContent='خرجت بمبلغ '+fmt(prize)+'.\nحاول مرة أخرى لتصل إلى المليون! ☀️';
   show('scr-end');saveResult(prize,false);
