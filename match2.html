@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head><script src="single-audio.js?v=1"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#8e44ad">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<title>Happy Day · Grade 3 Unit 2 · Memory game</title>
+<style>
+:root{--ink:#241540;--bg:#fff7e8;--card:#fff;--p:#8e44ad;--p2:#5b2a72;--gold:#f6b81a;--ok:#1f9d63;--bad:#d9433a;--soft:#f3e8f9;--line:#e2d3ee}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans Arabic","Noto Naskh Arabic",Tahoma,sans-serif;letter-spacing:normal;word-spacing:normal;background:var(--bg);color:var(--ink);font-size:18px;line-height:1.45}
+header{background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px}
+header h1{font-size:20px;margin:0;flex:1}
+header button{background:rgba(255,255,255,.18);color:#fff;border:0;border-radius:10px;padding:8px 10px;font-size:18px}
+main{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+.ar,[lang=ar]{font-family:"Noto Naskh Arabic","Noto Sans Arabic","Geeza Pro","Segoe UI",Tahoma,"Droid Arabic Naskh",Arial,sans-serif;letter-spacing:0!important;word-spacing:0;font-kerning:normal;text-rendering:optimizeLegibility}
+.ar{direction:rtl;text-align:right;font-size:16px;color:#3d5a66;margin:2px 0 10px}
+h2{margin:6px 0 2px;font-size:26px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px;margin:12px 0}
+.btn{display:inline-block;background:var(--p);color:#fff;border:0;border-radius:14px;padding:12px 18px;font-size:18px;font-weight:700;cursor:pointer;min-height:48px}
+.btn.alt{background:var(--soft);color:var(--p2)}
+.btn.gold{background:var(--gold);color:#3a2600}
+.back{display:flex!important;align-items:center;gap:12px;background:linear-gradient(135deg,#f97316,#f43f5e)!important;color:#fff!important;border:2px solid #fff3!important;border-radius:18px!important;padding:10px 22px 10px 16px!important;min-height:52px;box-shadow:0 4px 0 rgba(0,0,0,.22)!important;margin:6px 0 12px!important;font-family:inherit;cursor:pointer;text-align:left;font-size:18px;font-weight:800;text-decoration:none}
+.back b{font-size:24px;display:block;line-height:1.2}.back small{display:block;font-size:13px;font-weight:600;opacity:.92}.back .ba{font-size:34px;line-height:1;font-weight:800}
+.sm{font-size:14px;color:#3d5a66}
+.center{text-align:center}
+.big{font-size:54px;text-align:center}
+.setgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.setb{border:3px solid var(--line);background:#fff;border-radius:18px;padding:14px 6px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:110px;color:var(--ink)}
+.setb b{font-size:22px}.setb .st{color:var(--gold);letter-spacing:2px;font-size:19px;margin-top:auto}
+@media(max-width:360px){.setgrid{grid-template-columns:1fr}}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+@media(max-width:480px){.board{grid-template-columns:repeat(3,1fr);gap:8px}}
+.mcard{perspective:700px;cursor:pointer;border:0;background:none;padding:0;font-family:inherit;aspect-ratio:3/3.6;position:relative}
+.mcard .in{position:absolute;inset:0;transition:transform .4s;transform-style:preserve-3d}
+.mcard.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.face.front{background:linear-gradient(135deg,#8e44ad,#c77dff);border:3px solid #5b2a72;box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.face.front svg{width:56%;height:56%}
+.face.back{transform:rotateY(180deg);background:#fff;border:3px solid #b9a3cc;padding:4px}
+.face.back img{width:100%;height:100%;object-fit:contain;border-radius:10px}
+.face.back .wd{font-size:clamp(15px,4.6vw,24px);font-weight:800;color:#241540;line-height:1.15;text-align:center;overflow-wrap:anywhere;padding:4px}
+.mcard.done{cursor:default}
+.mcard.done .face.back{border-color:var(--ok);background:#eafaf1;box-shadow:0 0 0 3px #b6e8cd}
+.mcard.done .face.back::after{content:"\2713";position:absolute;top:2px;left:6px;color:var(--ok);font-weight:800;font-size:18px}
+.msgbar{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#5b2a72;margin:2px 0}
+.prog{height:10px;background:#ead9f5;border-radius:6px;overflow:hidden;margin:6px 0 10px}
+.prog i{display:block;height:100%;background:var(--gold)}
+.hint{background:#fff3cf;border-radius:12px;padding:10px;margin:8px 0;font-size:16px}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.mcard.done .in{animation:pop .35s}
+</style>
+</head>
+<body>
+<header><h1><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-5px"><circle cx="12" cy="12" r="6" fill="#f6b81a"/><g stroke="#f6b81a" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M3.5 3.5l2 2M18.5 18.5l2 2M20.5 3.5l-2 2M5.5 18.5l-2 2"/></g></svg> Happy Day</h1><a href="unit2.html" style="color:#fff;text-decoration:none;font-weight:700;font-size:15px;white-space:nowrap">🏠 الوحدة الثانية</a><button id="snd" aria-label="Sound on or off"></button></header>
+<main id="app"></main>
+<script src="imgs2.js?v=1"></script><script src="units2.js?v=1"></script><script src="audio-u2-1.js?v=1"></script><script src="audio-u2-2.js?v=1"></script><script src="fx-praise.js"></script><script src="fx-retry.js"></script>
+<script>
+(function(){
+'use strict';
+var KEY='happyday-g3u2-v1',MKEY='happyday-g3u2-mem-v1';
+var S=load(),M=loadM();
+function load(){try{var o=JSON.parse(localStorage.getItem(KEY)||'{}');if(o.sound===undefined)o.sound=true;return o}catch(e){return{sound:true}}}
+function loadM(){try{var o=JSON.parse(localStorage.getItem(MKEY)||'{}');o.best=o.best||{};return o}catch(e){return{best:{}}}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function saveM(){try{localStorage.setItem(MKEY,JSON.stringify(M))}catch(e){}}
+var app=document.getElementById('app');
+function el(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+var AUD=window.AUD=window.AUD||{};var IMG=window.IMG||{};var SECS=window.SEC||[];
+function has(id){return !!(id&&AUD[id])}
+function play(id,cb){if(!S.sound||!has(id)){if(cb)setTimeout(cb,60);return}try{var a=new Audio(AUD[id]);if(cb)a.onended=cb;var pr=a.play();if(pr&&pr.catch)pr.catch(function(){if(cb)cb()})}catch(e){if(cb)cb()}}
+function fx(ok,cb){if(!S.sound){if(cb)setTimeout(cb,60);return}if(window.FX){FX.play(ok,cb)}else if(cb)cb()}
+var SPK='<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-4px"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+var snd=document.getElementById('snd');
+function sndUi(){snd.innerHTML=S.sound?SPK:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-4px"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>'}
+snd.onclick=function(){S.sound=!S.sound;save();sndUi()};sndUi();
+function stars(n){return '★'.repeat(n)+'☆'.repeat(3-n)}
+var SUN='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6" fill="#f6b81a"/><g stroke="#f6b81a" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M3.5 3.5l2 2M18.5 18.5l2 2M20.5 3.5l-2 2M5.5 18.5l-2 2"/></g></svg>';
+function backBtn(t,l){var b=el('<a class="back" href="#"><span class="ba">&larr;</span><span><b lang="ar" dir="rtl">رجوع</b><small>Back'+(l?': '+l:'')+'</small></span></a>');b.onclick=function(e){e.preventDefault();t()};return b}
+function show(node){app.innerHTML='';app.appendChild(node);window.scrollTo(0,0)}
+// pool: pictured words from Unit 2 sections
+var POOL=[],seen={};
+SECS.forEach(function(s){s.words.forEach(function(w){var k=w.en.toLowerCase();if(w.img&&IMG[w.img]&&!seen[k]){seen[k]=1;POOL.push({en:w.en,ar:w.ar,aud:w.aud,img:w.img})}})});
+var SETS=[];
+function reshuffle(){SETS=[];var sh0=shuffle(POOL);for(var i=0;i<sh0.length;i+=6)SETS.push(sh0.slice(i,i+6));
+if(SETS.length>1&&SETS[SETS.length-1].length<3){var l=SETS.pop();SETS[SETS.length-1]=SETS[SETS.length-1].concat(l)}}
+reshuffle();
+function arNum(n){return String(n).replace(/[0-9]/g,function(c){return '٠١٢٣٤٥٦٧٨٩'[+c]})}
+// ---- game home: pick a set
+function home(){var d=el('<div></div>');
+d.innerHTML='<h2 style="margin-bottom:2px">🃏 لعبة الذاكرة</h2><div class="ar" lang="ar" dir="rtl" style="font-size:21px">الوحدة الثانية: افتح البطاقات وطابق كل صورة مع اسمها، حتى تظهر جميع الصور!</div><div class="sm">Memory game: flip the cards and match every picture with its name. No timer — take your time.</div>';
+var g=el('<div class="setgrid"></div>');
+SETS.forEach(function(set,i){var b=M.best[i];var st=b===undefined?0:(b<=1?3:b<=4?2:1);
+var t=el('<button class="setb" style="border-color:#8e44ad"><span style="font-size:34px">🃏</span><b lang="ar" dir="rtl">المجموعة '+arNum(i+1)+'</b><span class="sm">Set '+(i+1)+' · '+set.length+' pairs</span><span class="st">'+(b===undefined?'☆☆☆':stars(st))+'</span></button>');
+t.onclick=function(){playSet(i)};g.appendChild(t)});
+d.appendChild(g);
+d.appendChild(el('<p class="sm center">Your stars are saved on this device only.</p>'));
+var hb=el('<button class="btn alt" style="width:100%;margin-top:8px"><b lang="ar" dir="rtl" style="font-size:20px">🏠 الرئيسية: الوحدة الثانية</b></button>');hb.onclick=function(){location.href='unit2.html'};d.appendChild(hb);
+show(d)}
+// ---- play one set
+function playSet(si){var words=SETS[si];
+var cards=[];words.forEach(function(w){cards.push({k:w.en,type:'pic',w:w});cards.push({k:w.en,type:'word',w:w})});
+cards=shuffle(cards);
+var d=el('<div></div>');d.appendChild(backBtn(function(){home()},'Sets'));
+d.appendChild(el('<h2 style="margin-bottom:0">🃏 لعبة الذاكرة <small class="sm">· Set '+(si+1)+' of '+SETS.length+'</small></h2>'));
+d.appendChild(el('<div class="ar" lang="ar" dir="rtl" style="font-size:19px">طابق الصورة مع اسمها. خذ وقتك، لا يوجد وقت محدد.</div>'));
+var bar=el('<div class="prog"><i style="width:0%"></i></div>');d.appendChild(bar);
+var info=el('<div class="msgbar"><span lang="ar" dir="rtl">الصور المطابقة: <b class="mcount">0</b> / '+arNum(words.length)+'</span><span class="sm">Mistakes: <b class="mist">0</b></span></div>');d.appendChild(info);
+var board=el('<div class="board"></div>');d.appendChild(board);
+var first=null,lock=false,matched=0,mistakes=0;
+cards.forEach(function(c){
+var content=c.type==='pic'?'<img src="'+IMG[c.w.img]+'" alt="'+esc(c.w.en)+'">':'<span class="wd">'+esc(c.w.en)+'</span>';
+var b=el('<button class="mcard" aria-label="card"><span class="in"><span class="face front">'+SUN+'</span><span class="face back">'+content+'</span></span></button>');
+b.onclick=function(){
+if(lock||b.classList.contains('flip')||b.classList.contains('done'))return;
+b.classList.add('flip');
+if(c.type==='word'&&has(c.w.aud))play(c.w.aud);
+if(!first){first={b:b,c:c};return}
+var f=first;first=null;
+if(f.c.k===c.k&&f.c.type!==c.type){
+f.b.classList.add('done');b.classList.add('done');matched++;
+info.querySelector('.mcount').textContent=arNum(matched);
+bar.firstElementChild.style.width=Math.round(matched/words.length*100)+'%';
+if(has(c.w.aud)){play(c.w.aud,function(){fx(true)})}else{fx(true)}
+if(matched===words.length)setTimeout(function(){finishSet()},900);
+}else{
+lock=true;mistakes++;info.querySelector('.mist').textContent=mistakes;
+fx(false);
+setTimeout(function(){f.b.classList.remove('flip');b.classList.remove('flip');lock=false},1000)}
+};
+board.appendChild(b)});
+show(d);
+function finishSet(){var st=mistakes<=1?3:mistakes<=4?2:1;
+if(M.best[si]===undefined||mistakes<M.best[si]){M.best[si]=mistakes;saveM()}
+var last=si===SETS.length-1;
+var d2=el('<div></div>');d2.appendChild(backBtn(function(){home()},'Sets'));
+var c=el('<div class="card center" style="border-width:3px;border-color:#f6b81a"><div class="big">🎉</div><h2 lang="ar" dir="rtl" style="margin:4px 0">'+(last?'ظهرت جميع الصور! أنت بطل الذاكرة!':'أحسنت! انتهت المجموعة '+arNum(si+1))+'</h2><div style="font-size:36px;color:#f6b81a;letter-spacing:3px">'+stars(st)+'</div><p style="font-size:19px">Mistakes: '+mistakes+'</p>'+(last?'<p lang="ar" dir="rtl" style="font-size:19px;font-weight:700;color:#2a1a52">طابقت كل صور الوحدة الثانية مع أسمائها. رائع!</p>':'')+'</div>');
+var r=el('<button class="btn" style="width:100%;margin:8px 0"><b lang="ar" dir="rtl" style="font-size:20px">العب مرة أخرى</b><span style="font-size:14px;display:block">Play this set again</span></button>');r.onclick=function(){playSet(si)};c.appendChild(r);
+if(!last){var nx=el('<button class="btn gold" style="width:100%;margin:4px 0"><b lang="ar" dir="rtl" style="font-size:20px">المجموعة التالية ←</b><span style="font-size:14px;display:block">Next set</span></button>');nx.onclick=function(){playSet(si+1)};c.appendChild(nx)}
+else{var all=el('<button class="btn gold" style="width:100%;margin:4px 0"><b lang="ar" dir="rtl" style="font-size:20px">جولة جديدة لكل الصور</b><span style="font-size:14px;display:block">New shuffle of all cards</span></button>');all.onclick=function(){reshuffle();home()};c.appendChild(all)}
+d2.appendChild(c);show(d2);
+fx(true)}
+}
+home();
+})();
+</script>
+<script>window.goatcounter={path:function(p){return "/g3"+p}};</script>
+<script data-goatcounter="https://shorbagy-sites.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="redirect.js"></script>
+<script src="skill-nav.js"></script><!--hb-online--><script>(function(){try{var id=localStorage.getItem("hid");if(!id){id=Math.random().toString(36).slice(2,12)+Date.now().toString(36);localStorage.setItem("hid",id)}function b(){if(document.hidden)return;fetch("https://itqan-gate.pages.dev/api/online?id="+id+"&_="+Date.now(),{mode:"no-cors",cache:"no-store"}).catch(function(){})}b();setInterval(b,25000);document.addEventListener("visibilitychange",b)}catch(e){}})();</script><!--/hb-online-->
+<script src="shamousa.js"></script>
+</body>
+</html>
