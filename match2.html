@@ -39,12 +39,12 @@ h2{margin:6px 0 2px;font-size:26px}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .face.front{background:linear-gradient(135deg,#8e44ad,#c77dff);border:3px solid #5b2a72;box-shadow:0 3px 0 rgba(0,0,0,.18)}
 .face.front svg{width:56%;height:56%}
-.face.back{transform:rotateY(180deg);background:#fff;border:3px solid #b9a3cc;padding:4px}
-.face.back img{width:100%;height:100%;object-fit:contain;border-radius:10px}
-.face.back .wd{font-size:clamp(15px,4.6vw,24px);font-weight:800;color:#241540;line-height:1.15;text-align:center;overflow-wrap:anywhere;padding:4px}
+.face.rv{transform:rotateY(180deg);background:#fff;border:3px solid #b9a3cc;padding:4px}
+.face.rv img{width:100%;height:100%;object-fit:contain;border-radius:10px}
+.face.rv .wd{font-size:clamp(15px,4.6vw,24px);font-weight:800;color:#241540;line-height:1.15;text-align:center;overflow-wrap:anywhere;padding:4px}
 .mcard.done{cursor:default}
-.mcard.done .face.back{border-color:var(--ok);background:#eafaf1;box-shadow:0 0 0 3px #b6e8cd}
-.mcard.done .face.back::after{content:"\2713";position:absolute;top:2px;left:6px;color:var(--ok);font-weight:800;font-size:18px}
+.mcard.done .face.rv{border-color:var(--ok);background:#eafaf1;box-shadow:0 0 0 3px #b6e8cd}
+.mcard.done .face.rv::after{content:"\2713";position:absolute;top:2px;left:6px;color:var(--ok);font-weight:800;font-size:18px}
 .msgbar{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#5b2a72;margin:2px 0}
 .prog{height:10px;background:#ead9f5;border-radius:6px;overflow:hidden;margin:6px 0 10px}
 .prog i{display:block;height:100%;background:var(--gold)}
@@ -114,7 +114,7 @@ var board=el('<div class="board"></div>');d.appendChild(board);
 var first=null,lock=false,matched=0,mistakes=0;
 cards.forEach(function(c){
 var content=c.type==='pic'?'<img src="'+IMG[c.w.img]+'" alt="'+esc(c.w.en)+'">':'<span class="wd">'+esc(c.w.en)+'</span>';
-var b=el('<button class="mcard" aria-label="card"><span class="in"><span class="face front">'+SUN+'</span><span class="face back">'+content+'</span></span></button>');
+var b=el('<button class="mcard" aria-label="card"><span class="in"><span class="face front">'+SUN+'</span><span class="face rv">'+content+'</span></span></button>');
 b.onclick=function(){
 if(lock||b.classList.contains('flip')||b.classList.contains('done'))return;
 b.classList.add('flip');
