@@ -213,14 +213,14 @@ var d=el('<div></div>');d.appendChild(backBtn(home));
 var c=el('<div class="card center"><div class="big">✨</div><h2 lang="ar" dir="rtl" style="margin:4px 0">تم مسح النقاط</h2><div class="sm">Points cleared</div><p lang="ar" dir="rtl" style="font-size:20px;line-height:1.7;color:#2a1a52">عاد كل شيء إلى الصفر. ابدأ من جديد يا بطل!</p><p class="sm">Everything is back to zero. Ready for a fresh start!</p></div>');
 var b=el('<button class="btn" style="width:100%;margin-top:8px"><b lang="ar" dir="rtl" style="font-size:22px">العودة إلى البداية</b><span style="font-size:14px;display:block">Back to start</span></button>');b.onclick=home;c.appendChild(b);d.appendChild(c);show(d)}
 // ---- games hub: every Unit 2 game in one place
-var GAMES=[
+function gamesHub(){var GAMES=[
  ['mem','لعبة الذاكرة','Memory game','#8e44ad',function(){location.href='match2.html'},'صورة واسمها',IC.mem],
  ['pics','ما هذه الصورة؟','Picture quiz','#2aa86a',function(){pics()},'Book pictures',IC.pics],
  ['time','بكم هذا؟','How much is it?','#f6a000',function(){priceGame()},'Prices',IC.time],
  ['listen','استمع واختر','Listen and choose','#2f7de1',function(){listenGame()},'10 words',IC.listen],
  ['practice','ساحة الأنشطة مع شموسة','Activity arena','#ff7a00',function(){location.href='practice2.html'},'Word games','☀️'],
  ['arena','ساحة شموسة للألعاب','Shamousa game arena','#e8542f',function(){location.href='arena2.html'},'7 games','🎮']];
-function gamesHub(){var d=el('<div></div>');d.appendChild(backBtn(home,'Home'));
+var d=el('<div></div>');d.appendChild(backBtn(home,'Home'));
 d.appendChild(el('<h2 style="margin-bottom:2px">🎮 الألعاب</h2>'));
 d.appendChild(el('<div class="ar" lang="ar" dir="rtl" style="font-size:21px">كل ألعاب الوحدة الثانية في مكان واحد. اختر لعبة والعب!</div>'));
 d.appendChild(el('<div class="sm">All Unit 2 games in one place. Pick a game and play.</div>'));
