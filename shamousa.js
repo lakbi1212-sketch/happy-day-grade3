@@ -37,7 +37,7 @@
     return '<a class="shm-row" style="background:' + PALETTE[i % PALETTE.length] + '" href="https://youtube.com/shorts/' + s.id + '" target="_blank" rel="noopener">\ud83c\udfac ' + s.ar + '<small dir="ltr">' + s.en + "</small></a>";
   }).join("");
   overlay.innerHTML = '<div id="shm-panel" dir="rtl" style="position:relative"><button id="shm-close" aria-label="close">\u2715</button><h2>\u2600\ufe0f \u0634\u0645\u0648\u0633\u0629</h2><div class="shm-sub" dir="ltr">Shamousa Shorts</div>' + rows +
-    '<a class="shm-sub-btn" href="' + CHANNEL + '" target="_blank" rel="noopener">\u0645\u0646 \u0641\u0636\u0644\u0643 \u0627\u0634\u062a\u0631\u0643 \u0641\u064a \u0642\u0646\u0627\u0629 \u0634\u0645\u0648\u0633\u0629 \ud83d\udd14<small dir="ltr">Subscribe to Shamousa</small></a></div>';
+    '<a class="shm-sub-btn" href="' + CHANNEL + '" target="_blank" rel="noopener">\u0627\u0634\u062a\u0631\u0643 \u0644\u064a\u0635\u0644\u0643 \u0643\u0644 \u062c\u062f\u064a\u062f \ud83d\udd14<small dir="ltr">Subscribe to get every new video</small></a></div>';
   btn.addEventListener("click", function () { overlay.style.display = "flex"; });
   overlay.addEventListener("click", function (e) { if (e.target === overlay || e.target.id === "shm-close") overlay.style.display = "none"; });
   document.body.appendChild(btn);
