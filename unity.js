@@ -35,6 +35,8 @@
   }
 
   var css =
+    '#unity-bar,#unity-bar *,.unity-nav,.unity-nav *{box-sizing:border-box}'+
+    '#shm-launch{position:relative!important;bottom:auto!important;right:auto!important;left:auto!important;display:block!important;width:max-content;max-width:calc(100% - 32px);margin:24px auto!important}'+
     'html{-webkit-text-size-adjust:100%;text-size-adjust:100%}' +
     'body{padding-top:' + (cfg.big ? 66 : 58) + 'px!important}' +
     '#unity-bar{position:fixed;top:0;right:0;left:0;z-index:25;display:flex;align-items:center;gap:8px;' +
@@ -71,13 +73,13 @@
   t.className = 'ub-title';
   t.textContent = (cfg.icon + ' ' + cfg.g).trim();
   bar.appendChild(t);
-  if (!isHome) bar.appendChild(link('index.html', 'ub', '🏠 الرئيسية'));
+  if (!isHome) bar.appendChild(link('index.html', 'ub', '🏠 الرئيسية / Home'));
   document.body.appendChild(bar);
 
   var nav = document.createElement('nav');
   nav.className = 'unity-nav';
   nav.setAttribute('aria-label', 'التنقل الرئيسي');
-  if (!isHome) nav.appendChild(link('index.html', 'un-home', '🏠 الرئيسية'));
+  if (!isHome) nav.appendChild(link('index.html', 'un-home', '🏠 الرئيسية / Home'));
   nav.appendChild(link(PORTAL, 'un-portal', '🌞 بوابة الإتقان'));
   document.body.appendChild(nav);
 })();
