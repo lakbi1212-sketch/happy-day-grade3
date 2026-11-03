@@ -35,6 +35,7 @@
   }
 
   var css =
+    'html{-webkit-text-size-adjust:100%;text-size-adjust:100%}' +
     'body{padding-top:' + (cfg.big ? 66 : 58) + 'px!important}' +
     '#unity-bar{position:fixed;top:0;right:0;left:0;z-index:25;display:flex;align-items:center;gap:8px;' +
       'padding:6px 10px;background:linear-gradient(135deg,' + cfg.c1 + ',' + cfg.c2 + ');' +
@@ -50,7 +51,7 @@
     '.unity-nav{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;max-width:560px;' +
       'margin:34px auto 6px;padding:0 14px;direction:rtl;clear:both;' +
       'font-family:\'Noto Naskh Arabic\',Tahoma,Arial,sans-serif}' +
-    '.unity-nav a{flex:1;min-width:170px;text-align:center;text-decoration:none;color:#fff;font-weight:800;' +
+    '.unity-nav a{flex:1;min-width:140px;text-align:center;text-decoration:none;color:#fff;font-weight:800;' +
       'font-size:' + (cfg.big ? 26 : 21) + 'px;padding:' + (cfg.big ? '18px 12px' : '14px 12px') + ';border-radius:20px;' +
       'text-shadow:0 2px 3px rgba(0,0,0,.3);box-shadow:0 5px 0 rgba(0,0,0,.2);border:3px solid rgba(255,255,255,.5)}' +
     '.unity-nav a:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.2)}' +
