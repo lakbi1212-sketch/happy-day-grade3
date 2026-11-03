@@ -39,9 +39,9 @@
     '#unity-bar,#unity-bar *,.unity-nav,.unity-nav *{box-sizing:border-box}'+
     '#shm-launch{position:relative!important;bottom:auto!important;right:auto!important;left:auto!important;display:block!important;width:max-content;max-width:calc(100% - 32px);margin:24px auto!important}'+
     'html{-webkit-text-size-adjust:100%;text-size-adjust:100%}' +
-    'body{padding-top:' + (cfg.big ? 66 : 58) + 'px!important}' +
+    'body{padding-top:' + (cfg.big ? 108 : 96) + 'px!important}' +
     '#unity-bar{position:fixed;top:0;right:0;left:0;z-index:25;display:flex;align-items:center;gap:8px;' +
-      'padding:6px 10px;background:linear-gradient(135deg,#122A4F,#1B3A6B);border-bottom:3px solid #12B5A5;' +
+      'padding:6px 10px;background:linear-gradient(135deg,#122A4F,#1B3A6B);border-bottom:3px solid #12B5A5;flex-direction:column;align-items:stretch;gap:4px;' +
       'box-shadow:0 3px 10px rgba(18,42,79,.35);direction:rtl;' +
       'font-family:\'Cairo\',\'Noto Naskh Arabic\',Tahoma,Arial,sans-serif}' +
     '#unity-bar a.ub-brand{display:inline-flex;align-items:baseline;gap:7px;text-decoration:none;color:#fff;' +
@@ -64,6 +64,13 @@
       'font-size:' + (cfg.big ? 26 : 21) + 'px;padding:' + (cfg.big ? '18px 12px' : '14px 12px') + ';border-radius:20px;' +
       'text-shadow:0 2px 3px rgba(0,0,0,.3);box-shadow:0 5px 0 rgba(18,42,79,.28);border:3px solid rgba(255,255,255,.5)}' +
     '.unity-nav a:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(18,42,79,.28)}' +
+    '.unity-links{display:flex;gap:4px;overflow-x:auto;max-width:100%;padding:2px 2px 0;scrollbar-width:none}' +
+    '.unity-links::-webkit-scrollbar{display:none}' +
+    '.unity-links a{flex:none;color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.14);white-space:nowrap;line-height:1.6}' +
+    '.unity-links a:active{background:rgba(18,181,165,.5)}' +
+    '#unity-bar .barwrap{display:flex;align-items:center;gap:8px;width:100%}' +
+    '.ub-crumbs{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;max-width:640px;margin:10px auto 0;padding:6px 14px;direction:rtl;font-family:\'Cairo\',\'Noto Naskh Arabic\',Tahoma,sans-serif;font-size:14px;font-weight:700;background:rgba(255,255,255,.88);color:#1B3A6B;border-radius:999px;box-shadow:0 2px 8px rgba(18,42,79,.18)}' +
+    '.ub-crumbs a{color:#0E9C8E;text-decoration:none;font-weight:800}' +
     '.unity-nav .un-home{background:linear-gradient(135deg,' + cfg.c1 + ',' + cfg.c2 + ')}' +
     '.unity-nav .un-portal{background:linear-gradient(135deg,#1B3A6B,#12B5A5)}';
   var st = document.createElement('style');
@@ -75,13 +82,38 @@
 
   var bar = document.createElement('div');
   bar.id = 'unity-bar';
-  bar.appendChild(link(PORTAL, 'ub-brand', '🌞 بوابة الإتقان <small>ITQAN GATE</small>'));
+  var wrap = document.createElement('div');
+  wrap.className = 'barwrap';
+  wrap.appendChild(link(PORTAL, 'ub-brand', '🌞 بوابة الإتقان <small>ITQAN GATE</small>'));
   var t = document.createElement('span');
   t.className = 'ub-title';
   t.innerHTML = '<span class="chip">' + (cfg.icon + ' ' + cfg.g).trim() + '</span>';
-  bar.appendChild(t);
-  if (!isHome) bar.appendChild(link('index.html', 'ub', '🏠 الرئيسية / Home'));
+  wrap.appendChild(t);
+  if (!isHome) wrap.appendChild(link('index.html', 'ub', '🏠 الرئيسية / Home'));
+  bar.appendChild(wrap);
+  var links = document.createElement('div');
+  links.className = 'unity-links';
+  links.appendChild(link('index.html', '', 'الرئيسية'));
+  links.appendChild(link(PORTAL + 'index.html#grades', '', 'الصفوف الدراسية'));
+  links.appendChild(link(PORTAL + 'activities.html', '', 'الأنشطة التفاعلية'));
+  links.appendChild(link(PORTAL + 'help.html', '', 'المساعدة'));
+  bar.appendChild(links);
   document.body.appendChild(bar);
+  var crumbs = document.createElement('div');
+  crumbs.className = 'ub-crumbs';
+  crumbs.appendChild(link(PORTAL, '', '🌞 البوابة'));
+  var sep = document.createElement('span'); sep.textContent = '›'; crumbs.appendChild(sep);
+  if (isHome) {
+    var cur = document.createElement('b'); cur.textContent = cfg.g; crumbs.appendChild(cur);
+  } else {
+    crumbs.appendChild(link('index.html', '', cfg.g));
+    var pt = (document.title || '').split('·')[0].split('|')[0].trim();
+    if (pt && pt !== cfg.g) {
+      var sep2 = document.createElement('span'); sep2.textContent = '›'; crumbs.appendChild(sep2);
+      var cur2 = document.createElement('b'); cur2.textContent = pt; crumbs.appendChild(cur2);
+    }
+  }
+  document.body.insertBefore(crumbs, document.body.firstChild);
 
   var nav = document.createElement('nav');
   nav.className = 'unity-nav';
