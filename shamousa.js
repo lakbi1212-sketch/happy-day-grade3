@@ -43,3 +43,6 @@
   document.body.appendChild(btn);
   document.body.appendChild(overlay);
 })();
+
+// © 2026 Mohamed Mostafa Al Shorbagy — Shamousa · SHM-2026-ITQAN-90f132
+var __SHM_OWNER = "Mohamed Mostafa Al Shorbagy / شموسة / SHM-2026-ITQAN-90f132";
