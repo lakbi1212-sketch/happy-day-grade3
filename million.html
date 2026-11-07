@@ -118,7 +118,6 @@ footer{text-align:center;margin-top:30px;font-size:12.5px;opacity:.85;line-heigh
     <div class="opts" id="ui-opts"></div>
     <div class="exp" id="ui-exp"></div>
     <button class="btn" id="btn-next" style="display:none">السؤال التالي ←</button>
-    <button class="btn ghost" id="btn-withdraw">انسحاب والاحتفاظ بالمبلغ</button>
   </div>
 
   <div id="scr-end" class="center" style="display:none">
@@ -424,14 +423,6 @@ $('btn-start').onclick=function(){
 };
 $('btn-again').onclick=function(){show('scr-start');startTheme()};
 $('btn-next').onclick=function(){game.i++;ask()};
-$('btn-withdraw').onclick=function(){
-  if(game.over)return;game.over=true;stopAll();stopVoice();
-  var prize=curPrize();
-  $('end-title').textContent='انسحبت بذكاء'+((game.name||'').trim()?' يا '+game.name.trim():'')+'!';
-  $('end-prize').textContent=fmt(prize);
-  $('end-msg').textContent='خرجت بمبلغ '+fmt(prize)+'.\nحاول مرة أخرى لتصل إلى المليون! ☀️';
-  show('scr-end');saveResult(prize,false);
-};
 $('btn-mute').onclick=function(){muted=!muted;if(muted){stopAll();stopVoice()}else if(!game||game.over)startTheme();else questionAudio(game.i);$('btn-mute').textContent=muted?'🔇':'🔊'};
 function unlockStart(){if(!game||game.over)startTheme();['pointerdown','click','keydown','touchstart'].forEach(function(ev){window.removeEventListener(ev,unlockStart)})}
 ['pointerdown','click','keydown','touchstart'].forEach(function(ev){window.addEventListener(ev,unlockStart,{passive:true})});
