@@ -59,7 +59,7 @@ h2{margin:6px 0 2px;font-size:24px}
 .wcol .spk{margin-top:0}
 @media(max-width:480px){.wimg{width:150px}.qpic{width:min(100%,340px)}.qem{font-size:96px}.qclock svg{width:min(100%,240px)}.wpair{grid-template-columns:1fr}}
 </style>
-</head>
+<script>window.SHM_BOARDS_QUIET=1;</script><script src="https://itqan-boards.itqan-gate.workers.dev/boards.js" defer></script></head>
 <body>
 <!-- Original work © 2026 Mohamed Mostafa Al Shorbagy (شموسة · Shamousa). Licensed for use only on the official Itqan domains. SHM-2026-ITQAN-90f132 -->
 
@@ -138,7 +138,7 @@ if(selL.en===w.en){good();praise();b.disabled=true;lb.disabled=true;b.classList.
 if(matched===list.length)finish()}
 else{bad();if(missed.indexOf(selL)<0)missed.push(selL);b.classList.add('no');setTimeout(function(){b.classList.remove('no')},500);msg.innerHTML='<b style="color:#d9433a">&#10007; Not this one. Try again.</b>'}};cr.appendChild(b)});
 d.appendChild(cols);d.appendChild(msg);show(d);
-function finish(){var nx=el('<button class="btn gold" style="margin-top:12px;width:100%">Next →</button>');nx.onclick=function(){if(!retry){si++}
+function finish(){try{if(window.ShmBoards)ShmBoards.log('activity')}catch(e){}var nx=el('<button class="btn gold" style="margin-top:12px;width:100%">Next →</button>');nx.onclick=function(){if(!retry){si++}
 if(!retry&&si<sets.length){setup(sets[si],false)}else if(missed.length&&round<2){round++;var m=missed;missed=[];setup(m.length>1?m:m.concat(s.words.filter(function(x){return m.indexOf(x)<0}).slice(0,1)),true)}else{var was=S.sec[s.id];S.sec[s.id]=1;save();rate('sec_'+s.id,2);var e=el('<div class="card center"><div class="big" style="color:#f6b81a">&#9733;</div><h2>Section done!</h2><p>'+esc(s.en)+'</p><p style="font-weight:800;color:#14424f">'+(!was?'+6 new points! ':'')+'Points: '+pointsInfo().total+' / '+GOAL+'</p></div>');var b=el('<button class="btn">Back to the words</button>');b.onclick=studio;e.appendChild(b);var w=el('<div></div>');w.appendChild(e);show(w)}};d.appendChild(nx);nx.scrollIntoView&&nx.scrollIntoView({block:'center'})}
 }
 setup(sets[0],false)}

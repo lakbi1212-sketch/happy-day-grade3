@@ -39,7 +39,7 @@ body{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,Arial,sans-serif;backgroun
 .mc.en{direction:ltr;font-family:Arial,sans-serif}.mc.sel{background:#fff1b8;border-color:#ffb703}.mc.done{background:#c8f7d4;border-color:#2e9e57;opacity:.7}.mc.bad{background:#ffd6d6;border-color:#d64545}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;direction:ltr;margin:6px 0}.three span{background:#f4efff;border-radius:12px;padding:8px 4px;font-weight:800;font-size:16px;font-family:Arial,sans-serif;text-align:center}
 footer{text-align:center;margin-top:26px;font-size:12.5px;color:#4b4268;line-height:1.9;direction:ltr}
-</style></head><body>
+</style><script>window.SHM_BOARDS_QUIET=1;</script><script src="https://itqan-boards.itqan-gate.workers.dev/boards.js" defer></script></head><body>
 <!-- Original work © 2026 Mohamed Mostafa Al Shorbagy (شموسة · Shamousa). Licensed for use only on the official Itqan domains. SHM-2026-ITQAN-90f132 -->
 
 <script src="imgs2.js?v=1"></script><script src="units2.js?v=1"></script><div class="wrap">
@@ -130,7 +130,7 @@ function check(val,btn){var r=run,it=r.items[r.i];if(r.locked)return;r.locked=tr
  $('#go').onclick=function(){r.i++;ask()};
  if(!it.vaud&&it.audio&&okk&&it.kind!=='w'){}
 }
-function fin(){var r=run,n=r.items.length,st=r.ok>=9?3:r.ok>=7?2:r.ok>=5?1:0;ST.stars+=r.ok;ST.done++;save();
+function fin(){try{if(window.ShmBoards)ShmBoards.log('activity')}catch(e){}var r=run,n=r.items.length,st=r.ok>=9?3:r.ok>=7?2:r.ok>=5?1:0;ST.stars+=r.ok;ST.done++;save();
  show('<div class="end"><div class="stars">'+'⭐'.repeat(st)+'☆'.repeat(3-st)+'</div><h2>'+r.ok+' من '+n+'</h2><p style="font-size:17px">'+(st==3?'مذهل! أنت نجم الساحة 🌟':st==2?'جميل جدًا! كرر لتصل إلى الكمال 💪':'تدرّب مرة أخرى وسترى الفرق 🌈')+'</p><div class="row"><button class="btn" id="again">العب مرة أخرى 🔁</button><button class="btn" style="background:#0e9f8a;box-shadow:0 3px 0 #0a6e5f" id="men">كل الأنشطة</button></div></div>');
  $('#again').onclick=function(){start(r.id)};$('#men').onclick=function(){P.classList.remove('on');window.scrollTo({top:0,behavior:'smooth'})}}
 function memory(){var vs=pick(verbsOK.filter(function(v){return v.v1.length<12&&v.ar.length<14}),6),cards=[];vs.forEach(function(v){cards.push({k:v.v1,t:v.v1,en:1});cards.push({k:v.v1,t:v.ar,en:0})});cards=shuf(cards);

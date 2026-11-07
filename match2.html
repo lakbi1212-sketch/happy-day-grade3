@@ -52,7 +52,7 @@ h2{margin:6px 0 2px;font-size:26px}
 @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
 .mcard.done .in{animation:pop .35s}
 </style>
-</head>
+<script>window.SHM_BOARDS_QUIET=1;</script><script src="https://itqan-boards.itqan-gate.workers.dev/boards.js" defer></script></head>
 <body>
 <!-- Original work © 2026 Mohamed Mostafa Al Shorbagy (شموسة · Shamousa). Licensed for use only on the official Itqan domains. SHM-2026-ITQAN-90f132 -->
 
@@ -136,7 +136,7 @@ setTimeout(function(){f.b.classList.remove('flip');b.classList.remove('flip');lo
 };
 board.appendChild(b)});
 show(d);
-function finishSet(){var st=mistakes<=1?3:mistakes<=4?2:1;
+function finishSet(){try{if(window.ShmBoards)ShmBoards.log('activity')}catch(e){}var st=mistakes<=1?3:mistakes<=4?2:1;
 if(M.best[si]===undefined||mistakes<M.best[si]){M.best[si]=mistakes;saveM()}
 var last=si===SETS.length-1;
 var d2=el('<div></div>');d2.appendChild(backBtn(function(){home()},'Sets'));
