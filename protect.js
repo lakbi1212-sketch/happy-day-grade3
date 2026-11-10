@@ -74,3 +74,7 @@
   }
   throw new Error('[' + SIG + '] Unauthorized domain: ' + h);
 })();
+
+
+/* Itqan competition boards (listening points 2026-11-10): load the boards client on every page */
+(function(){try{if(window.ShmBoards||document.querySelector('script[src*="itqan-boards"]'))return;var s=document.createElement("script");s.src="https://itqan-boards.itqan-gate.workers.dev/boards.js";s.defer=true;s.setAttribute("data-site",location.hostname.split(".")[0]);document.head.appendChild(s);}catch(e){}})();
