@@ -115,7 +115,7 @@ function hear(g){var ws=pickWords(10,true),i=0,ok=0;
 // 5 flash cards
 function cards(g){var ws=POOL.slice(),i=0;
  function q(){var w=ws[i];show('<div class="prog"><i style="width:'+((i+1)/ws.length*100)+'%"></i></div><div class="ptitle">🃏 كلمة '+(i+1)+' من '+ws.length+'</div><div class="fc"><div class="big">'+vis(w)+'</div><div class="en">'+esc(w.en)+'</div><div class="ar">'+w.ar+'</div></div><div class="say">'+(AUD[w.aud]?'<button class="btn alt" id="sp">🔊 اسمع مع شموسة</button>':'')+'</div><div class="row"><button class="btn r" id="pv">→ السابقة</button><button class="btn" id="nx">التالية ←</button></div>');
-  var sp=$('#sp');if(sp){sp.onclick=function(){play(w.aud)};play(w.aud)}$('#pv').onclick=function(){i=(i+ws.length-1)%ws.length;q()};$('#nx').onclick=function(){if(i==ws.length-1){ST.stars+=3;ST.done++;save();confetti();P.classList.remove('on');window.scrollTo({top:0,behavior:'smooth'});return}i++;q()}}q()}
+  var sp=$('#sp');if(sp){sp.onclick=function(){play(w.aud)};play(w.aud)}$('#pv').onclick=function(){i=(i+ws.length-1)%ws.length;q()};$('#nx').onclick=function(){if(i==ws.length-1){if(!ST.cd){ST.cd=1;ST.stars+=3;ST.done++;save()}confetti();P.classList.remove('on');window.scrollTo({top:0,behavior:'smooth'});return}i++;q()}}q()}
 // 6 sentences list
 function sents(g){var l=SENT;show('<div class="ptitle">💬 جمل مع شموسة</div><div class="sl">'+l.map(function(s,k){return '<div class="si"><div class="e">'+esc(s.en)+'</div><div class="a">'+(s.ar||'')+'</div>'+(AUD[s.id]?'<button class="btn alt" data-p="'+s.id+'">🔊 اسمع</button>':'')+'</div>'}).join('')+'</div>');P.onclick=function(e){var b=e.target.closest('[data-p]');if(b)play(b.dataset.p)}}
 // 7 my day in order
