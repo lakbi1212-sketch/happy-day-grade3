@@ -13,8 +13,8 @@ var st=document.createElement('style');st.id='shm-verb-card-style';st.textConten
 .shm-vcard .shm-vform button{margin:7px auto 0!important;max-width:100%!important}
 .shm-vtable,.shm-vtable>tbody{display:block!important;width:100%!important;overflow:visible!important;background:transparent!important;border:0!important;border-radius:0!important}
 .shm-vtable>thead{display:none!important}.shm-vtable tr.shm-vhead{display:none!important}
-.shm-vtable tr.shm-vcard{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
-.shm-vtable td{border:0!important;min-width:0!important;max-width:none!important;width:auto!important}
+.shm-vtable tr.shm-vcard{height:auto!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+.shm-vtable td{height:auto!important;border:0!important;min-width:0!important;max-width:none!important;width:auto!important}
 .shm-vtable .shm-vform::before{content:attr(data-shm-label);display:block;font:700 14px/1.5 Arial,sans-serif;color:#6a5a8a;margin-bottom:6px}
 .shm-vtable .shm-vform{font:700 clamp(17px,4.8vw,25px)/1.4 Arial,sans-serif!important}
 .shm-vsound{grid-column:1/-1!important;text-align:left!important;background:transparent!important;padding:0!important}
