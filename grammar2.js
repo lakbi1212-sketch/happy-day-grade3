@@ -29,6 +29,7 @@ r.pr.forEach(function(q,k){var opts=q[1].map(function(t,j){return {t:t,ok:j===q[
  opts.forEach(function(op){var bt=E('<button class="xb">'+X(op.t)+'</button>');bt.onclick=function(){if(fin)return;fin=true;ans++;if(op.ok){got++;bt.classList.add('ok');praiseG()}else{bt.classList.add('no');o.querySelectorAll('button').forEach(function(x,ix){if(opts[ix].ok)x.classList.add('ok')})}
   if(ans===r.pr.length){res.innerHTML='<b>'+got+' of '+r.pr.length+' correct</b>'+(got===r.pr.length?' - well done!':'. Read the rule again and try once more.');try{var s=JSON.parse(localStorage.getItem('g3gram2')||'{}');s[r.id]=Math.max(s[r.id]||0,got);if(got===r.pr.length)s[r.id]=6;localStorage.setItem('g3gram2',JSON.stringify(s))}catch(e){}}};o.appendChild(bt)});d.appendChild(c)});
 d.appendChild(res);
+if(window.g3Solved)d.appendChild(window.g3Solved(r.id));
 var nx=E('<button class="btn gold" style="width:100%;margin:14px 0">'+(i<R.length-1?'Next rule &rarr;':'Back to the rules')+'</button>');nx.onclick=function(){i<R.length-1?view(i+1):list()};d.appendChild(nx);window.__show(d)}
-window.grammar=list;
+window.grammar=list;window.grammarRule=function(id){var i=R.findIndex(function(r){return r.id===id});if(i>=0)view(i)};
 })();
