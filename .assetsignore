@@ -2,3 +2,5 @@
 
 .wrangler
 wrangler.jsonc
+**/scenes.json
+worker.js

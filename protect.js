@@ -81,3 +81,20 @@
 
 /* Shared verb-card presentation, original audio retained. */
 (function(){var s=document.createElement('script');s.src='/verb-cards.js?v=20261110-1';s.defer=true;document.head.appendChild(s)})();
+
+/* v2 hardening (protect.js): same deterrents (2026-11-13): right-click/copy/select/drag + devtools keys. Form fields stay usable. */
+(function(){
+  'use strict';
+  var hn=(location.hostname||'').toLowerCase();
+  if(hn==='localhost'||hn==='127.0.0.1') return;
+  function editable(t){return !!(t&&t.closest&&t.closest('input,textarea,select,[contenteditable="true"],[contenteditable=""]'));}
+  document.addEventListener('contextmenu',function(e){if(!editable(e.target)){e.preventDefault();}},true);
+  document.addEventListener('copy',function(e){if(!editable(e.target)){e.preventDefault();}},true);
+  document.addEventListener('cut',function(e){if(!editable(e.target)){e.preventDefault();}},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();},true);
+  document.addEventListener('selectstart',function(e){if(!editable(e.target)){e.preventDefault();}},true);
+  document.addEventListener('keydown',function(e){
+    var k=(e.key||'').toLowerCase();
+    if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)||((e.ctrlKey||e.metaKey)&&['u','s'].indexOf(k)>-1)){e.preventDefault();e.stopPropagation();}
+  },true);
+})();
