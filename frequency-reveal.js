@@ -3,7 +3,7 @@
 var p=new URLSearchParams(location.search);
 if(p.get('l')!=='u3-frequency'&&p.get('rule')!=='frequency')return;
 var style=document.createElement('style');
-style.textContent='.sv-q:not([data-freq-reveal]) .sv-ans,.sv-q:not([data-freq-reveal]) .sv-answer,.g3-freq-pending .sv-ans,.g3-freq-pending .sv-answer{display:none!important}.sv-q:not([data-freq-reveal]) .sv-opts mark,.g3-freq-pending .sv-opts mark{background:none!important;color:inherit!important;box-shadow:none!important}.g3-freq-reveal{padding:10px 16px;margin:8px 0;border:2px solid #087f8c;border-radius:10px;background:#fff;color:#193b68;font:700 17px Tahoma,Arial,sans-serif;cursor:pointer}.g3-freq-reveal:focus-visible{outline:3px solid #ffb703;outline-offset:3px}';document.head.appendChild(style);
+style.textContent='.sv-q:not([data-freq-reveal]) .sv-ans,.sv-q:not([data-freq-reveal]) .sv-answer,.g3-freq-pending .sv-ans,.g3-freq-pending .sv-answer{display:none!important}.sv-q:not([data-freq-reveal]) .sv-opts mark,.g3-freq-pending .sv-opts mark{background:none!important;color:inherit!important;box-shadow:none!important;font-weight:inherit!important;padding:0!important;border:0!important}.g3-freq-reveal{padding:10px 16px;margin:8px 0;border:2px solid #087f8c;border-radius:10px;background:#fff;color:#193b68;font:700 17px Tahoma,Arial,sans-serif;cursor:pointer}.g3-freq-reveal:focus-visible{outline:3px solid #ffb703;outline-offset:3px}';document.head.appendChild(style);
 var answerTimes=[18.8,39.7,63.64,84.46,108.2];
 function setup(){
  var root=document.getElementById('below')||document.getElementById('solved-recap');
