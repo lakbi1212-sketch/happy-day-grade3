@@ -92,7 +92,7 @@ var sumLines=D.lines.filter(function(l){return l.charAt(0)==='#'}).map(function(
 b+='<div class="panel"><h2>الملخص</h2><div class="sumbox">'+sumLines.join('<br>')+'</div></div>';
 if(S){
   var prefix='solved-audio/'+(S.unit||'u1')+'-'+D.rule+'/';
-  b+='<div class="panel"><h2>عشرون سؤالًا محلولًا</h2><p class="sv-ar">اقرأ الجملة ثم الاختيارات، وشاهد الإجابة الصفراء والسبب. لا يوجد مؤقت، خذ وقتك.</p>';
+  b+='<div class="panel"><h2>عشرون سؤالًا محلولًا</h2><p class="sv-ar">اقرأ الجملة والاختيارات وفكّر أولًا. يظهر عداد ٥ ثوانٍ قبل كشف الإجابة والسبب.</p>';
   S.items.forEach(function(q,i){
     if(i%5===0&&S.audioReady)b+='<h2 style="font-size:17px;margin-top:14px">تمارين '+(i+1)+' إلى '+(i+5)+'</h2><audio controls preload="none" aria-label="شرح شموسة" src="'+prefix+String(2+Math.floor(i/5)).padStart(2,'0')+'.mp3'+(id==='u3-frequency'&&i<5?'?v=hf20261113':'')+'"></audio>';
     b+='<article class="sv-q"><div class="sv-num">تمرين '+(i+1)+'</div><div class="sv-en">'+esc(q[0])+'</div><div class="sv-ar">'+bdi(q[1])+'</div><div class="sv-opts">'+q[2].map(function(o){return o===q[3]?'<mark>'+esc(o)+'</mark>':'<span>'+esc(o)+'</span>'}).join('')+'</div><div class="sv-ans"><b>الإجابة والسبب</b><div class="sv-en">'+esc(q[3])+'</div><div class="sv-ar">'+bdi(q[4])+'</div></div></article>';
